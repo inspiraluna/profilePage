@@ -1,0 +1,219 @@
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nico Krause, IT-Consultant</title>
+    <!-- <link href="/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link href="/css/font-awesome.css" rel="stylesheet"> -->
+    <link href="/css/main.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div id="photo-header" class="text-center">
+            <!-- PHOTO (AVATAR) -->
+            <div id="photo">
+              <img src="/img/avatar.jpg" alt="avatar">
+            </div>
+            <div id="text-header">
+              <h1>
+                    <p id="headline"  class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter headline" data-rows="4">{{headline}}</p>
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-7">
+          <!-- ABOUT ME -->
+          <div class="box">
+            <h2>About Me</h2>
+                    <p id="bio" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter bio" data-rows="4">{{bio}}</p>
+          </div>
+          <!-- EDUCATION -->
+          <div class="box">
+                
+                  <h2>Education</h2>
+                   {{#if currentUser}}
+                    <form class="new-education">
+                      <input type="text" name="year" placeholder="Year" />
+                      <input type="text" name="headline" placeholder="Headline" />
+                      <textarea type="text" name="story">{{story}}</textarea> 
+                      <input type="submit" value="OK" />
+                    </form>
+                  {{/if}}
+            
+            <ul id="education" class="clearfix">
+<!--               <li>
+                <div class="year pull-left">1976</div>
+                <div class="description pull-right">
+                  <h3>I was born in Borna (b. Leipzig), GDR</h3>
+                  <p>I spend my childhood in the German Democratic Republic (GDR) which turned into the reunited Germany in 1990. My father was working in a opencast coal mine and my mother was secretary of the Extended High School in Borna. I am coming from a classic East-German working class background. In my freetime I took piano and accordeon lessons and went twice a week for judo training. Once a week I attended the more or less mandatory pioneer gatherings. <br/>
+                  I went to a high school with extended Russian classes between 1985 and 1990. My class mates often elected me as class representative or pioneer group leader. In summer 1989 the school administration asked me to join the yearly major pioneer pathering "Pionierrepublik Wilhelm-Pieck" because of my particular activity and performance. It was a big honour at this time, which I today cannot deny. In the end I did not attend this gathering, because the Berlin Wall 'suddenly' came down. Although my educational direction was always pointing to a carreer in some or the other form in administration of the German Democratic Republik, my political views were very critical to general questions of freedom. Naturally nobody including me was openly articulating their own opinion against the officially thought way of thinking. As the wall came down and the question of reunioning appeared in the classroom, I can remember beeing the only one having nothing against a reunion with West-Germany. I could not really imagine but somehow it happend already one year later.
+                  </p>
+                </div>
+              </li> -->
+
+                {{#each educations}}
+                    {{> education}}
+                  {{/each}}
+            </ul>
+          </div>
+          <!-- EXPERIENCES -->
+          <div class="box">
+            <h2>Experiences & References</h2>
+              {{#if currentUser}}
+                  <form class="new-experience">
+                    <input type="text" name="year" placeholder="Year" />
+                    <input type="text" name="company" placeholder="Company" />
+                    <input type="text" name="headline" placeholder="Headline" />
+                    <textarea type="text" name="story">{{story}}</textarea> 
+                    <input type="submit" value="OK" />
+                  </form>
+              {{/if}}
+              {{#each experiences}}
+                  {{> experience}}
+              {{/each}}
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-5">
+          <!-- CONTACT -->
+          <div class="box clearfix">
+            <h2>Contact</h2>
+            <div class="contact-item">
+              <div class="icon pull-left text-center"><span class="fa fa-phone fa-fw"></span></div>
+              <div class="title only pull-right"> 
+                 <p id="telefon" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter telefon" data-rows="4">{{telefon}}</p>
+<!--           <a id="telefom" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter text" data-rows="4" href="tel:{{telefon}}">{{telefon}}</a> -->
+              </div> 
+            </div>
+            <div class="contact-item">
+              <div class="icon pull-left text-center"><span class="fa fa-envelope fa-fw"></span></div>
+              <div class="title only pull-right">
+                    <p id="email" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter email" data-rows="4">{{email}}</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="icon pull-left text-center"><span class="fa fa-twitter fa-fw"></span></div>
+              <div class="title pull-right">Twitter</div>
+              <div class="description pull-right">
+                    <p id="twitter" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter twitter" data-rows="4">{{twitter}}</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="icon pull-left text-center"><span class="fa fa-facebook fa-fw"></span></div>
+              <div class="title pull-right">Facebook</div>
+              <div class="description pull-right">
+                    <p id="facebook" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter facebook" data-rows="4">{{facebook}}</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="icon pull-left text-center"><span class="fa fa-skype fa-fw"></span></div>
+              <div class="title pull-right">Skype</div>
+              <div class="description pull-right">
+                    <p id="skype" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter skype" data-rows="4">{{skype}}</p>
+              </div>
+            </div>
+          </div>
+          <!-- SKILLS -->
+          <div class="box">
+            <h2>Skills</h2>
+            {{#if currentUser}}
+             <form class="new-skill">
+                    <input type="text" name="skill" placeholder="Skill" />
+                    <input type="text" name="percent" placeholder="0.1 to 1.0" />
+                    <input type="submit" value="OK" />
+              </form>
+             {{/if}}
+            <div class="skills">
+              {{#each skills}}
+                  {{> skill}}
+              {{/each}}
+              <div class="skills-legend clearfix">
+                <div class="legend-left legend">Beginner</div>
+                <div class="legend-left legend"><span>Proficient</span></div>
+                <div class="legend-right legend"><span>Expert</span></div>
+                <div class="legend-right legend">Master</div>
+              </div>
+            </div>
+          </div>
+          <!-- LANGUAGES -->
+          <div class="box">
+            <h2>Languages</h2>
+             {{#if currentUser}}
+              <form class="new-language">
+                      <input type="text" name="language" placeholder="Language" />
+                      <input type="text" name="percent" placeholder="Percent" />
+                      <input type="submit" value="OK" />
+              </form>
+            {{/if}}
+            <div id="language-skills">
+              {{#each languages}}
+                  {{> language}}
+              {{/each}}
+            </div>
+          </div>
+          <!-- HOBBIES -->
+          <div class="box">
+            <h2>Hobbies</h2>
+             {{#if currentUser}}
+              <form class="new-hobby">
+                      <input type="text" name="hobby" placeholder="Hobby" />
+                      <input type="submit" value="OK" />
+              </form>
+            {{/if}}
+              {{#each hobbies}}
+                  {{> hobby}}
+              {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+    {{> loginButtons}}
+  </body>
+
+<template name="education">
+    <li>
+         {{#if currentUser}}<button class="delete">&times;</button>{{/if}}
+        <div class="year pull-left">{{year}}</div>
+        <div class="description pull-right">
+          <h3>{{headline}}</h3>
+          <p>{{story}}</p>
+        </div>
+    </li>
+</template>
+
+<template name="experience">
+  {{#if currentUser}} <button class="delete">&times;</button>{{/if}}
+  <div class="job clearfix">
+    <div class="col-xs-3">
+      <div class="where">{{company}}</div>
+      <div class="year">{{year}}</div>
+    </div>
+    <div class="col-xs-9">
+      <div class="profession">{{headline}}</div>
+      <div class="description">{{story}}</div>
+    </div>
+  </div>
+</template>
+
+<template name="skill">
+     {{#if currentUser}}<button class="delete">&times;</button>{{/if}}
+    <div class="item-skills" id="skill_{{_id}}" data-percent="{{percent}}">{{skill}}</div>
+</template>
+
+<template name="language">
+     {{#if currentUser}}<button class="delete">&times;</button>{{/if}}
+    <div class="skill">{{language}}<div class="icons pull-right">
+    <div style="width: {{percent}};" id="language_{{_id}}" class="icons-red"></div></div></div>
+</template>
+
+<template name="hobby">
+     {{#if currentUser}}<button class="delete">&times;</button>{{/if}}
+    <div class="hobby">{{hobby}}</div>
+</template>
