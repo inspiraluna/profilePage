@@ -44,6 +44,7 @@ localstorage@1.0.5
 logging@1.0.8
 meteor@1.1.10
 meteor-base@1.0.1
+meteor-platform@1.2.3
 minifiers@1.1.7
 minimongo@1.0.10
 mobile-experience@1.0.1
@@ -79,3 +80,4 @@ underscore@1.0.4
 url@1.0.5
 webapp@1.2.3
 webapp-hashing@1.0.5
+workman:meteor-editable@0.1.10

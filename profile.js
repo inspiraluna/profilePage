@@ -8,14 +8,42 @@ Configs = new Mongo.Collection("configs");
 
 if (Meteor.isClient) {
 
+   
+
   Template.body.helpers({
 
+      options: function (parentContext) {
+
+        var config = Configs.findOne({'key':parentContext.hash.field});
+        console.log();
+        return {
+          type: 'textarea',
+          async: true,
+          position: 'right',
+          value: config?config.value:'no '+parentContext.hash.field, 
+          onsubmit: function (val, cb) {
+            // setTimeout(function () {
+                // Session.set('text', val);
+
+                var config = Configs.findOne({'key':parentContext.hash.field});
+
+                if(config==null){
+                  Configs.insert({key:parentContext.hash.field, value:val});
+                }
+                else{
+                  Configs.update(config._id,{$set:{value: val}});
+                }
+              cb();
+            // }, 1000);
+          }
+        };
+      },
      headline: function () {
         var config = Configs.findOne({'key':'headline'});
          return config?config.value:'no headline';
      },
      bio: function () {
-         var config = Configs.findOne({'key':'bio'}); 
+         var config = Configs.findOne({'key':'bio'});
          return config?config.value:'no bio';
      },
      telefon: function () {
@@ -29,6 +57,10 @@ if (Meteor.isClient) {
      twitter: function () {
          var config = Configs.findOne({'key':'twitter'}); 
         return (config==null)?'no twitter':config.value;
+     },
+     github: function () {
+         var config = Configs.findOne({'key':'github'}); 
+        return (config==null)?'no github':config.value;
      },
      facebook: function () {
          var config = Configs.findOne({'key':'facebook'}); 
@@ -55,7 +87,20 @@ if (Meteor.isClient) {
      }
   }); 
 
-  //Languages
+
+  Template.education.events({
+    "click .delete": function () {
+      Educations.remove(this._id);
+    }
+  });
+
+  Template.experience.events({
+    "click .delete": function () {
+      Experiences.remove(this._id);
+    }
+  });
+
+    //Languages
   Template.body.events({
 
     "submit .new-education": function (event) {
@@ -146,18 +191,6 @@ if (Meteor.isClient) {
   });
 
 
-  Template.education.events({
-    "click .delete": function () {
-      Educations.remove(this._id);
-    }
-  });
-
-  Template.experience.events({
-    "click .delete": function () {
-      Experiences.remove(this._id);
-    }
-  });
-
   Template.skill.events({
     "click .delete": function () {
       Skills.remove(this._id);
@@ -194,101 +227,6 @@ if (Meteor.isClient) {
       Hobbies.remove(this._id);
     }
   });  
-
-
-
-
-Template.body.rendered = function(){
-   if(Meteor.userId()){
-    $('#headline.editable').editable({
-      placement: "auto top",
-      success: function(response, newValue) {
-            var config = Configs.findOne({'key':'headline'});
-            if(config==null){
-              Configs.insert({key:'headline', value:newValue});
-            }
-            else{
-              Configs.update(config._id,{$set:{value: newValue}});
-            }
-        }});
-      
-      $('#bio.editable').editable({
-      placement: "auto top",
-      success: function(response, newValue) {
-            var config = Configs.findOne({'key':'bio'});
-            if(config==null){
-              Configs.insert({key:'bio', value:newValue});
-            }
-            else{
-              Configs.update(config._id,{$set:{value: newValue}});
-            }
-
-            }}
-        );
-
-        $('#telefon.editable').editable({
-            placement: "auto top",
-            success: function(response, newValue) {
-                    var config = Configs.findOne({'key':'telefon'});
-                    if(config==null){
-                      Configs.insert({key:'telefon', value:newValue});
-                    }
-                    else{
-                      Configs.update(config._id,{$set:{value: newValue}});
-                    }
-            }}
-          );
-
-            $('#email.editable').editable({placement: "auto top",
-                      success: function(response, newValue) {
-                              var config = Configs.findOne({'key':'email'});
-                              if(config==null){
-                                Configs.insert({key:'email', value:newValue});
-                              }
-                              else{
-                                Configs.update(config._id,{$set:{value: newValue}});
-                              }
-                      }}
-            );
-
-          $('#twitter.editable').editable({placement: "auto top",
-              success: function(response, newValue) {
-                      var config = Configs.findOne({'key':'twitter'});
-                      if(config==null){
-                        Configs.insert({key:'twitter', value:newValue});
-                      }
-                      else{
-                        Configs.update(config._id,{$set:{value: newValue}});
-                      }
-              }}
-            );
-
-          $('#facebook.editable').editable({placement: "auto top",
-              success: function(response, newValue) {
-                      var config = Configs.findOne({'key':'facebook'});
-                      if(config==null){
-                        Configs.insert({key:'facebook', value:newValue});
-                      }
-                      else{
-                        Configs.update(config._id,{$set:{value: newValue}});
-                      }
-              }}
-          );
-
-          $('#skype.editable').editable({placement: "auto top",
-                    success: function(response, newValue) {
-                            var config = Configs.findOne({'key':'skype'});
-                            if(config==null){
-                              Configs.insert({key:'skype', value:newValue});
-                            }
-                            else{
-                              Configs.update(config._id,{$set:{value: newValue}});
-                            }
-                    }}
-          );
-      }//if user!
-
-  };
 
 }
 

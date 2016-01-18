@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nico</title>
+    <title>Nico Krause</title>
     <!-- <link href="/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- <link href="/css/font-awesome.css" rel="stylesheet"> -->
     <link href="/css/main.css" rel="stylesheet">
@@ -21,9 +21,10 @@
               <img src="/img/avatar.jpg" alt="avatar">
             </div>
             <div id="text-header">
-              <h1>
-                 <p id="headline"  class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter headline" data-rows="4">{{headline}}</p>
-              </h1>
+              {{#if currentUser}}<h1>{{> m_editable options field='headline' }}</h1>
+              {{else}}
+               <h1>{{headline}}</h1>
+              {{/if}}
             </div>
           </div>
         </div>
@@ -32,8 +33,13 @@
         <div class="col-xs-12 col-sm-7">
           <!-- ABOUT ME -->
           <div class="box">
-            <h2>About Me</h2>
-                    <p id="bio" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter bio" data-rows="4">{{bio}}</p>
+            <h2>About Me</h2>            
+            {{#if currentUser}}
+              <h1>{{> m_editable options field='bio' }}</h1>
+            {{else}}
+                {{bio}}
+            {{/if}}
+               <!--      <p id="bio" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter bio" data-rows="4">{{bio}}</p> -->
           </div>
           <!-- EXPERIENCES -->
           <div class="box">
@@ -65,8 +71,7 @@
                   {{/if}}
             
             <ul id="education" class="clearfix">
-  }
-  }
+
 <!--               <li>
                 <div class="year pull-left">1976</div>
                 <div class="description pull-right">
@@ -79,7 +84,7 @@
 
                 {{#each educations}}
                     {{> education}}
-                  {{/each}}
+                {{/each}}
             </ul>
           </div>
         </div>
@@ -90,35 +95,65 @@
             <div class="contact-item">
               <div class="icon pull-left text-center"><span class="fa fa-phone fa-fw"></span></div>
               <div class="title only pull-right"> 
-                 <p id="telefon" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter telefon" data-rows="4">{{telefon}}</p>
-<!--           <a id="telefom" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter text" data-rows="4" href="tel:{{telefon}}">{{telefon}}</a> -->
+            {{#if currentUser}}
+            {{> m_editable options field='telefon' }}
+            {{else}}
+                {{telefon}}
+            {{/if}}
               </div> 
             </div>
             <div class="contact-item">
               <div class="icon pull-left text-center"><span class="fa fa-envelope fa-fw"></span></div>
               <div class="title only pull-right">
-                    <p id="email" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter email" data-rows="4">{{email}}</p>
+            {{#if currentUser}}
+              {{> m_editable options field='email' }}
+            {{else}}
+                {{email}}
+            {{/if}}
               </div>
             </div>
             <div class="contact-item">
               <div class="icon pull-left text-center"><span class="fa fa-twitter fa-fw"></span></div>
               <div class="title pull-right">Twitter</div>
               <div class="description pull-right">
-                    <p id="twitter" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter twitter" data-rows="4">{{twitter}}</p>
+              {{#if currentUser}}
+                {{> m_editable options field='twitter' }}
+              {{else}}
+                  {{twitter}}
+              {{/if}}
               </div>
             </div>
             <div class="contact-item">
               <div class="icon pull-left text-center"><span class="fa fa-facebook fa-fw"></span></div>
               <div class="title pull-right">Facebook</div>
               <div class="description pull-right">
-                    <p id="facebook" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter facebook" data-rows="4">{{facebook}}</p>
+                  {{#if currentUser}}
+                  {{> m_editable options field='facebook' }}
+                  {{else}}
+                      {{facebook}}
+                  {{/if}}
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="icon pull-left text-center"><span class="fa fa-skype fa-fw"></span></div>
+              <div class="title pull-right">Github</div>
+              <div class="description pull-right">
+                  {{#if currentUser}}
+                    {{> m_editable options field='github' }}
+                  {{else}}
+                      {{github}}
+                  {{/if}}
               </div>
             </div>
             <div class="contact-item">
               <div class="icon pull-left text-center"><span class="fa fa-skype fa-fw"></span></div>
               <div class="title pull-right">Skype</div>
               <div class="description pull-right">
-                    <p id="skype" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter skype" data-rows="4">{{skype}}</p>
+                  {{#if currentUser}}
+                     {{> m_editable options field='skype' }}
+                  {{else}}
+                      {{skype}}
+                  {{/if}}
               </div>
             </div>
           </div>
