@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nico Krause, IT-Consultant</title>
+    <title>Nico</title>
     <!-- <link href="/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- <link href="/css/font-awesome.css" rel="stylesheet"> -->
     <link href="/css/main.css" rel="stylesheet">
@@ -22,7 +22,7 @@
             </div>
             <div id="text-header">
               <h1>
-                    <p id="headline"  class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter headline" data-rows="4">{{headline}}</p>
+                 <p id="headline"  class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter headline" data-rows="4">{{headline}}</p>
               </h1>
             </div>
           </div>
@@ -34,35 +34,6 @@
           <div class="box">
             <h2>About Me</h2>
                     <p id="bio" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter bio" data-rows="4">{{bio}}</p>
-          </div>
-          <!-- EDUCATION -->
-          <div class="box">
-                
-                  <h2>Education</h2>
-                   {{#if currentUser}}
-                    <form class="new-education">
-                      <input type="text" name="year" placeholder="Year" />
-                      <input type="text" name="headline" placeholder="Headline" />
-                      <textarea type="text" name="story">{{story}}</textarea> 
-                      <input type="submit" value="OK" />
-                    </form>
-                  {{/if}}
-            
-            <ul id="education" class="clearfix">
-<!--               <li>
-                <div class="year pull-left">1976</div>
-                <div class="description pull-right">
-                  <h3>I was born in Borna (b. Leipzig), GDR</h3>
-                  <p>I spend my childhood in the German Democratic Republic (GDR) which turned into the reunited Germany in 1990. My father was working in a opencast coal mine and my mother was secretary of the Extended High School in Borna. I am coming from a classic East-German working class background. In my freetime I took piano and accordeon lessons and went twice a week for judo training. Once a week I attended the more or less mandatory pioneer gatherings. <br/>
-                  I went to a high school with extended Russian classes between 1985 and 1990. My class mates often elected me as class representative or pioneer group leader. In summer 1989 the school administration asked me to join the yearly major pioneer pathering "Pionierrepublik Wilhelm-Pieck" because of my particular activity and performance. It was a big honour at this time, which I today cannot deny. In the end I did not attend this gathering, because the Berlin Wall 'suddenly' came down. Although my educational direction was always pointing to a carreer in some or the other form in administration of the German Democratic Republik, my political views were very critical to general questions of freedom. Naturally nobody including me was openly articulating their own opinion against the officially thought way of thinking. As the wall came down and the question of reunioning appeared in the classroom, I can remember beeing the only one having nothing against a reunion with West-Germany. I could not really imagine but somehow it happend already one year later.
-                  </p>
-                </div>
-              </li> -->
-
-                {{#each educations}}
-                    {{> education}}
-                  {{/each}}
-            </ul>
           </div>
           <!-- EXPERIENCES -->
           <div class="box">
@@ -79,6 +50,37 @@
               {{#each experiences}}
                   {{> experience}}
               {{/each}}
+          </div>
+                    <!-- EDUCATION -->
+          <div class="box">
+                
+                  <h2>Education</h2>
+                   {{#if currentUser}}
+                    <form class="new-education">
+                      <input type="text" name="year" placeholder="Year" />
+                      <input type="text" name="headline" placeholder="Headline" />
+                      <textarea type="text" name="story">{{story}}</textarea> 
+                      <input type="submit" value="OK" />
+                    </form>
+                  {{/if}}
+            
+            <ul id="education" class="clearfix">
+  }
+  }
+<!--               <li>
+                <div class="year pull-left">1976</div>
+                <div class="description pull-right">
+                  <h3>I was born in Borna (b. Leipzig), GDR</h3>
+                  <p>I spend my childhood in the German Democratic Republic (GDR) which turned into the reunited Germany in 1990. My father was working in a opencast coal mine and my mother was secretary of the Extended High School in Borna. I am coming from a classic East-German working class background. In my freetime I took piano and accordeon lessons and went twice a week for judo training. Once a week I attended the more or less mandatory pioneer gatherings. <br/>
+                  I went to a high school with extended Russian classes between 1985 and 1990. My class mates often elected me as class representative or pioneer group leader. In summer 1989 the school administration asked me to join the yearly major pioneer pathering "Pionierrepublik Wilhelm-Pieck" because of my particular activity and performance. It was a big honour at this time, which I today cannot deny. In the end I did not attend this gathering, because the Berlin Wall 'suddenly' came down. Although my educational direction was always pointing to a carreer in some or the other form in administration of the German Democratic Republik, my political views were very critical to general questions of freedom. Naturally nobody including me was openly articulating their own opinion against the officially thought way of thinking. As the wall came down and the question of reunioning appeared in the classroom, I can remember beeing the only one having nothing against a reunion with West-Germany. I could not really imagine but somehow it happend already one year later.
+                  </p>
+                </div>
+              </li> -->
+
+                {{#each educations}}
+                    {{> education}}
+                  {{/each}}
+            </ul>
           </div>
         </div>
         <div class="col-xs-12 col-sm-5">

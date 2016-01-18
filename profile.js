@@ -8,7 +8,6 @@ Configs = new Mongo.Collection("configs");
 
 if (Meteor.isClient) {
 
-
   Template.body.helpers({
 
      headline: function () {
@@ -195,6 +194,7 @@ if (Meteor.isClient) {
       Hobbies.remove(this._id);
     }
   });  
+
 
 
 
