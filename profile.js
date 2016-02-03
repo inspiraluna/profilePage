@@ -74,7 +74,15 @@ if (Meteor.isClient) {
          return Educations.find({},{sort: {year: -1}});
      },
      experiences: function () {
-         return Experiences.find({},{sort: {year: -1}});
+      
+      var showTravels = (Session.get('travel')===null);
+      console.log(showTravels);
+      
+      return Experiences.find({trip: {"$exists":showTravels}},{sort: {year: -1}});
+     },
+     travel: function () {
+      console.log(Session.get('travel')===null);
+         return Session.get('travel');
      },
      skills: function () {
          return Skills.find({},{sort: {skill: 1}});
@@ -103,6 +111,13 @@ if (Meteor.isClient) {
     //Languages
   Template.body.events({
 
+    "click .travel": function (event) {
+      event.preventDefault();
+      console.log(Session.get('travel'));
+      if(Session.get('travel')) Session.set('travel',null);
+      else Session.set('travel','green');
+    },
+
     "submit .new-education": function (event) {
       event.preventDefault();
 
@@ -129,12 +144,14 @@ if (Meteor.isClient) {
       var company = event.target.company.value;
       var headline = event.target.headline.value;
       var story = event.target.story.value;
+      var trip = event.target.trip.checked;
 
       Experiences.insert({
         year: year,
         company: company,
         headline: headline,
         story: story,
+        trip: trip,
         createdAt: new Date()
       });
 

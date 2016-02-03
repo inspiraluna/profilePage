@@ -35,20 +35,33 @@
           <div class="box">
             <h2>About Me</h2>            
             {{#if currentUser}}
-              <h1>{{> m_editable options field='bio' }}</h1>
+              <p>{{> m_editable options field='bio' }}</p>
             {{else}}
-                {{bio}}
+               <p> {{bio}}</p>
             {{/if}}
-               <!--      <p id="bio" class="editable" data-type="textarea" data-display="false"  data-placeholder="Enter text" data-emptytext="Click to enter bio" data-rows="4">{{bio}}</p> -->
+
           </div>
           <!-- EXPERIENCES -->
           <div class="box">
-            <h2>Experiences & References</h2>
+
+          <table width="100%">
+            <tr>
+              <td class="left"><h2>Experiences, References, Trips</h2></td>
+              <td class="right">
+                  <i class="travel fa fa-train fa-x2 {{travel}}"></i>
+                  <i class="travel fa fa-ship fa-x2 {{travel}}"></i>
+                  <i class="travel fa fa-bus fa-x2 {{travel}}"></i>
+                  <i class="travel fa fa-plane fa-x2 {{travel}}"></i>
+              </td>
+            </tr>
+          </table>
+            
               {{#if currentUser}}
                   <form class="new-experience">
                     <input type="text" name="year" placeholder="Year" />
                     <input type="text" name="company" placeholder="Company" />
                     <input type="text" name="headline" placeholder="Headline" />
+                     <input type="checkbox" name="trip"/> trip?
                     <textarea type="text" name="story">{{story}}</textarea> 
                     <input type="submit" value="OK" />
                   </form>

@@ -222,6 +222,19 @@ EDUCATION
 /*******************************************
 EXPERIENCES
 *******************************************/
+.green {
+  color: green;
+}
+.left {
+  width: 50%;
+  text-align: left;
+  margin-right: 1em;
+}
+.right {
+  width: 50%;
+  /*text-align: right;*/
+  margin-right: 1em;
+}
 .job{
   margin-bottom: 15px;
 }
