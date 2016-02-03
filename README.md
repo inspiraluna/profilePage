@@ -1,6 +1,6 @@
 # profilePage
 a simple editable profilePage for freelancers made with meteor
-
+see a demo at http://nicokrause.meteor.com (not editable without admin login)
 
 1. install meteor from www.meteor.com on your machine
 2. clone this project into your project folder
@@ -25,7 +25,7 @@ a simple editable profilePage for freelancers made with meteor
 	https://www.discovermeteor.com/blog/spacebars-secrets-exploring-meteor-new-templating-engine/
 
 ##Done:
-- added trips to experiences - now its possible ot mix trips into experiences 
+- added trips to experiences - now its possible to mix trips into experiences 
 - once data are loaded from meteor - it does not the autocomplete (complete new implementation of workman:meteor-editable)	
 	http://meteor-editable.meteor.com/docs
 	https://atmospherejs.com/workman/meteor-editable
