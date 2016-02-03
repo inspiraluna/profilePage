@@ -40,48 +40,45 @@ if (Meteor.isClient) {
       },
      headline: function () {
         var config = Configs.findOne({'key':'headline'});
-         return config?config.value:'no headline';
+         return config?config.value:'';
      },
      bio: function () {
          var config = Configs.findOne({'key':'bio'});
-         return config?config.value:'no bio';
+         return config?config.value:'';
      },
      telefon: function () {
          var config = Configs.findOne({'key':'telefon'}); 
-        return (config==null)?'no telefon':config.value;
+        return (config==null)?'':config.value;
      },
      email: function () {
          var config = Configs.findOne({'key':'email'}); 
-         return (config==null)?'no email':config.value;
+         return (config==null)?'':config.value;
      },
      twitter: function () {
          var config = Configs.findOne({'key':'twitter'}); 
-        return (config==null)?'no twitter':config.value;
+        return (config==null)?'':config.value;
      },
      github: function () {
          var config = Configs.findOne({'key':'github'}); 
-        return (config==null)?'no github':config.value;
+        return (config==null)?'':config.value;
      },
      facebook: function () {
          var config = Configs.findOne({'key':'facebook'}); 
-         return (config==null)?'no facebook':config.value;
+         return (config==null)?'':config.value;
      },
      skype: function () {
          var config = Configs.findOne({'key':'skype'}); 
-         return (config==null)?'no skype':config.value;
+         return (config==null)?'':config.value;
      },
      educations: function () {
          return Educations.find({},{sort: {year: -1}});
      },
      experiences: function () {
       
-      var showTravels = (Session.get('travel')===null);
-      console.log(showTravels);
-      
+      var showTravels = (Session.get('travel')!==null);    
       return Experiences.find({trip: {"$exists":showTravels}},{sort: {year: -1}});
      },
      travel: function () {
-      console.log(Session.get('travel')===null);
          return Session.get('travel');
      },
      skills: function () {

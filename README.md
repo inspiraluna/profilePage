@@ -1,5 +1,6 @@
 # profilePage
-a simple editable profilePage for freelancers made with meteor
+a simple editable profilePage for freelancers made with meteor. 
+
 see a demo at http://nicokrause.meteor.com (not editable without admin login)
 
 1. install meteor from www.meteor.com on your machine
@@ -9,6 +10,8 @@ see a demo at http://nicokrause.meteor.com (not editable without admin login)
 
 
 ##Nice2Have
+- make edited texts editable
+- improve delete of hobbies (* at the wrong position)
 - make nicer links für SocialMedia
 	- eventually show logos of the technology by hovering over the skills
 	- put links to the technologies
