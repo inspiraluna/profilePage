@@ -207,17 +207,32 @@ if (Meteor.isClient) {
 
   Template.skill.events({
     "click .delete": function () {
+      console.log('deleting skill with id:'+this._id);
       Skills.remove(this._id);
     }
   });
   
   Template.skill.rendered = function() {
 
-    var data = Template.instance().data;
-      var newWidth = $('#skill_'+data._id).parent().width() * data.percent;
-      $('#skill_'+data._id).animate({
-        width: newWidth,
-      }, 1000);
+
+    $('.progress-bar').each(function() {
+      $(this).appear(function() {
+        var percent = $(this).attr('aria-valuenow');
+        $(this).animate({'width' : (percent*100) + '%'});
+        $(this).parent('.progress').prev('.progress-title').find('.p-coutn').countTo({
+          from: 0,
+          to: (percent*100),
+          speed: 900,
+          refreshInterval: 30
+        });
+      });
+    });
+
+    // var data = Template.instance().data;
+    //   var newWidth = $('#skill_'+data._id).parent().width() * data.percent;
+    //   $('#skill_'+data._id).animate({
+    //     width: newWidth,
+    //   }, 1000);
 
   }
 

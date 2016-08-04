@@ -10,9 +10,12 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 
 
 ##TODO
+
 - translation 
 	https://github.com/TAPevents/tap-i18n-db
 	https://github.com/TAPevents/tap-i18n
+- download CV as PDF
+
 - add spiderable
 
 	
