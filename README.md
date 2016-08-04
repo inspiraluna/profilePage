@@ -13,18 +13,21 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 - translation 
 	https://github.com/TAPevents/tap-i18n-db
 	https://github.com/TAPevents/tap-i18n
+- add spiderable
+
 	
 - add content everywhere (e.g. bio)
 
 
 ##Nice2Have
-- make edited texts editable (what exactly?!)
+- make already edited texts editable (what exactly?!)
 - improve delete of hobbies (* at the wrong position)
-- make nicer links für SocialMedia
+- make nicer links to SocialMedia 
 	- eventually show logos of the technology by hovering over the skills
 	- put links to the technologies
 - implement a WebRTC for profile!
 - add markdown for texts (textareas)
+- add clone me on github flag on webpage
 
 ##Info
 ``
