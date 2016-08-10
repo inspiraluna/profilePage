@@ -23,3 +23,6 @@ fortawesome:fontawesome
 workman:meteor-editable
 standard-minifier-css
 standard-minifier-js
+iron:router
+natestrauser:x-editable-bootstrap
+spiderable

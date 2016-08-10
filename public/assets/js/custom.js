@@ -80,31 +80,31 @@
 			return false;
 		});
 
-		$(window).on('resize', function() {
-			$('.row-portfolio').imagesLoaded(function() {
-				$('.row-portfolio').isotope({
-					layoutMode: 'masonry',
-					itemSelector: '.portfolio-item',
-				});
-			});
-		}).resize();
+		// $(window).on('resize', function() {
+		// 	$('.row-portfolio').imagesLoaded(function() {
+		// 		$('.row-portfolio').isotope({
+		// 			layoutMode: 'masonry',
+		// 			itemSelector: '.portfolio-item',
+		// 		});
+		// 	});
+		// }).resize();
 
 		/* ---------------------------------------------- /*
 		 * Progress bars, counters, pie charts animations
 		/* ---------------------------------------------- */
 
-		$('.progress-bar').each(function() {
-			$(this).appear(function() {
-				var percent = $(this).attr('aria-valuenow');
-				$(this).animate({'width' : percent + '%'});
-				$(this).parent('.progress').prev('.progress-title').find('.p-coutn').countTo({
-					from: 0,
-					to: percent,
-					speed: 900,
-					refreshInterval: 30
-				});
-			});
-		});
+			// $('.progress-bar').each(function() {
+			// 	$(this).appear(function() {
+			// 		var percent = $(this).attr('aria-valuenow');
+			// 		$(this).animate({'width' : percent + '%'});
+			// 		$(this).parent('.progress').prev('.progress-title').find('.p-coutn').countTo({
+			// 			from: 0,
+			// 			to: percent,
+			// 			speed: 900,
+			// 			refreshInterval: 30
+			// 		});
+			// 	});
+			// });
 
 		$('.counter-timer').each(function() {
 			$(this).appear(function() {

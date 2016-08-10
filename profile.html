@@ -21,16 +21,20 @@
         <link href="assets/css/template.css" rel="stylesheet">
     </head>
     <body>
-        <!-- Preloader-->
+       {{>home}}
+    </body>
+
+<template name="home">
+ <!-- Preloader-->
         <div class="page-loader">
             <div class="loader">Loading...</div>
         </div>
         <!-- Preloader end-->
         <!-- Show menu-->
         <div class="show-menu-btn">
-			<span></span>
-			<span></span>
-			<span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
         <!-- Show menu end-->
         <!-- Menu-->
@@ -38,27 +42,27 @@
             <div class="menu-table">
                 <div class="menu-table-cell">
                     <ul class="navigation">
-                        <li><a href="index.html">Profile</a></li>
-                        <li><a href="resume.html">Resume</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="blog.html">Journal</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="shortcodes.html">Shortcodes</a></li>
+                        <li><a href="/">Profile</a></li>
+<!--                         <li><a href="/resume">Resume</a></li>
+                        <li><a href="/portfolio">Portfolio</a></li>
+                        <li><a href="/blog">Journal</a></li>
+                        <li><a href="/contact">Contact</a></li> -->
+               <!--          <li><a href="/shortcodes">Shortcodes</a></li> -->
                     </ul>
                 </div>
             </div>
         </div>
         <!-- Menu end-->
         <div class="wrapper">
-            <!-- Hero section-->
-            <section class="split-image parallax" data-background="assets/images/module-7.jpg">
+            <!-- Hero section 967x1280 module-7-->
+            <section class="split-image parallax" data-background="assets/images/nico-eg-summer-garden.jpg">
                 <div class="split-image-footer">
-                    <ul class="split-list">
+<!--                     <ul class="split-list">
                         <li>Download cv:</li>
                         <li><a href="#">English</a></li>
                         <li><a href="#">German</a></li>
                         <li><a href="#">Spanish</a></li>
-                    </ul>
+                    </ul> -->
                 </div>
             </section>
             <!-- Hero section end-->
@@ -93,12 +97,22 @@
                             </div>
                             <div class="col-sm-8">
                                 <ul>
-                                    <li>Name: Nico Krause</li>
-                                    <li>Birthdate: June 02, 1976</li>
-                                    <li>Address: Lichtenberg 44, D-84307 Eggenfelden, Germany</li>
-                                    <li>Phone: +49 8721 128 9600-0</li>
-                                    <li>E-mail: <a href="mailto:nico (@) le-space.de">nico (@) le-space.de</a></li>
-                                    <li>Website: <a href="http://nicokrause.com">nicokrause.com</a></li>
+                                <li>Name: 
+                                {{#if currentUser}}{{> m_editable options field='fullname' }}
+                                {{else}}{{fullname}}{{/if}}</li>
+
+                                <li>Birthday: {{#if currentUser}}{{> m_editable options field='birthday' }}{{else}} {{birthday}}{{/if}}</li>
+
+                                <li>Address: {{#if currentUser}}{{> m_editable options field='address' }}{{else}}{{address}}{{/if}}</li>
+
+                                <li>Phone: {{#if currentUser}}{{> m_editable options field='telefon' }}{{else}}{{telefon}}{{/if}}</li>
+                            
+                                <li>E-mail: {{#if currentUser}}{{> m_editable options field='email' }}{{else}}<a href="mailto:{{email}}">{{email}}</a>{{/if}}</li>
+
+                                <li>Website: {{#if currentUser}}{{> m_editable options field='website' }}{{else}}<a href="http://{{website}}">{{website}}</a>{{/if}}</li>
+                              
+
+
                                 </ul>
                             </div>
                         </div>
@@ -113,7 +127,11 @@
                                 <h6>Services.</h6>
                             </div>
                             <div class="col-sm-8">
-                                <p>I got mainly contacted from project owners who develop projects in the governmental, financial and health sector. My speciality is a broad overview and knowledge of different technologies from the last 20 years til today. I see myself also as a full stack developer, although my responsibilties mostly end where web design starts.</p>
+                                {{#if currentUser}}
+                                  <p>{{> m_editable options field='serviceIntro' }}</p>
+                                {{else}}
+                                   <p>{{serviceIntro}}</p>
+                                {{/if}}
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <ul class="service-list">
@@ -141,7 +159,7 @@
                     <div class="container-fluid container-custom">
                         <div class="row">
                             <div class="col-sm-4">
-                                <h6>Professional skills.</h6>
+                                <h6>IT skills.</h6>
                             </div>
                             <div> {{#if currentUser}}
                                  <form class="new-skill">
@@ -161,7 +179,7 @@
                 </section>
                 <!-- Professional skills end-->
                 <!-- Counters-->
-                <section class="module">
+<!--                 <section class="module">
                     <div class="container-fluid container-custom">
                         <div class="row">
                             <div class="col-sm-4">
@@ -169,57 +187,58 @@
                             </div>
                             <div class="col-sm-8">
                                 <div class="row">
-                                    <!-- Counter-->
+
                                     <div class="col-xs-6">
                                         <div class="counter">
                                             <h2 class="counter-number"><span class="counter-timer" data-from="0" data-to="12000">0</span></h2>
                                             <div class="counter-title">Theme Users</div>
                                         </div>
                                     </div>
-                                    <!-- Counter end-->
-                                    <!-- Counter-->
+      
                                     <div class="col-xs-6">
                                         <div class="counter">
                                             <h2 class="counter-number"><span class="counter-timer" data-from="0" data-to="8">0</span></h2>
                                             <div class="counter-title">Total downloads</div>
                                         </div>
                                     </div>
-                                    <!-- Counter end-->
-                                    <!-- Counter-->
+
                                     <div class="col-xs-6">
                                         <div class="counter">
                                             <h2 class="counter-number"><span class="counter-timer" data-from="0" data-to="18">0</span></h2>
                                             <div class="counter-title">Design experiments</div>
                                         </div>
                                     </div>
-                                    <!-- Counter end-->
-                                    <!-- Counter-->
+
                                     <div class="col-xs-6">
                                         <div class="counter">
                                             <h2 class="counter-number"><span class="counter-timer" data-from="0" data-to="64">0</span></h2>
                                             <div class="counter-title">Launched startups</div>
                                         </div>
                                     </div>
-                                    <!-- Counter end-->
+
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
+                </section> -->
                 <!-- Counters end-->
                 <!-- Footer-->
                 <footer class="footer">
                     <div class="container-fluid container-custom">
                         <div class="row">
-                            <div class="col-md-7">
-                                <p>© 2016 Node. All rights reserved</p>
+                            <div class="col-md-2">
+                                {{> loginButtons}}
+                            </div>
+                            <div class="col-md-5">
+                                <p>© 2016 Nico Krause. All rights reserved</p>
                             </div>
                             <div class="col-md-5">
                                 <ul class="social-list">
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="https://twitter.com/inspiraluna" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="https://www.facebook.com/inspiraluna" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="https://soundcloud.com/inspiraluna" target="_blank"><i class="fa fa-soundcloud"></i></a></li> 
+                                    <li><a href="https://www.github.com/inspiraluna" target="_blank"><i class="fa fa-github"></i></a></li> 
+                                    <!-- <li><a href="#"><i class="fa fa-linkedin"></i></a></li> -->
                                 </ul>
                             </div>
                         </div>
@@ -230,14 +249,13 @@
             <!-- Content section end-->
         </div>
         <!-- Scripts-->
-<!--         <script src="assets/js/jquery-2.2.3.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script> -->
+        <script src="assets/js/jquery-2.2.3.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script>
         <script src="assets/js/plugins.min.js"></script>
         <script src="assets/js/custom.js"></script>
-    </body>
 
-
+</template>
 
 <template name="education">
     <li>
@@ -264,9 +282,6 @@
   </div>
 </template>
 <template name="skill">
-    
-    
-
     <!-- Progress bar end-->
     <div class="progress-item" id="skill_{{_id}}">
         {{#if currentUser}}<div>

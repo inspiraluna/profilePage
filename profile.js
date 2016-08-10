@@ -5,12 +5,27 @@ Languages = new Mongo.Collection("languages");
 Hobbies = new Mongo.Collection("hobbies");
 Configs = new Mongo.Collection("configs");
 
-
+// Router.route('/', function () {
+//   this.render('Home');
+// });
+// Router.route('/resume', function () {
+//   this.render('resume');
+// });
+// Router.route('/portfolio', function () {
+//   this.render('portfolio');
+// });
+// Router.route('/blog', function () {
+//   this.render('blog');
+// });
+// Router.route('/contact', function () {
+//   this.render('contact');
+// });
+// Router.route('/shortcodes', function () {
+//   this.render('shortcodes');
+// });
 if (Meteor.isClient) {
 
-   
-
-  Template.body.helpers({
+  Template.home.helpers({
 
       options: function (parentContext) {
 
@@ -46,12 +61,32 @@ if (Meteor.isClient) {
          var config = Configs.findOne({'key':'bio'});
          return config?config.value:'';
      },
+     serviceIntro: function () {
+         var config = Configs.findOne({'key':'serviceIntro'});
+         return config?config.value:'';
+     },
+     fullname: function () {
+         var config = Configs.findOne({'key':'fullname'}); 
+        return (config==null)?'':config.value;
+     },
+     birthday: function () {
+         var config = Configs.findOne({'key':'birthday'}); 
+        return (config==null)?'':config.value;
+     },
+     address: function () {
+         var config = Configs.findOne({'key':'address'}); 
+        return (config==null)?'':config.value;
+     },
      telefon: function () {
          var config = Configs.findOne({'key':'telefon'}); 
         return (config==null)?'':config.value;
      },
      email: function () {
          var config = Configs.findOne({'key':'email'}); 
+         return (config==null)?'':config.value;
+     },
+     website: function () {
+         var config = Configs.findOne({'key':'website'}); 
          return (config==null)?'':config.value;
      },
      twitter: function () {
@@ -106,7 +141,7 @@ if (Meteor.isClient) {
   });
 
     //Languages
-  Template.body.events({
+  Template.home.events({
 
     "click .travel": function (event) {
       event.preventDefault();

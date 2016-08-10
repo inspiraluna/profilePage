@@ -10,19 +10,24 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 
 
 ##TODO
-
+- add yoga section
+- add trips section
+- add coworking section
+- add press section
+- add blog (all kind of stuffs e.g. software stuffs, travel, coworking, remote working)
 - translation 
 	https://github.com/TAPevents/tap-i18n-db
 	https://github.com/TAPevents/tap-i18n
-- download CV as PDF
+- download CV as PDF (siehe footer im PDF)
 
-- add spiderable
+
 
 	
 - add content everywhere (e.g. bio)
 
 
 ##Nice2Have
+- add webrtc call communication 
 - make already edited texts editable (what exactly?!)
 - improve delete of hobbies (* at the wrong position)
 - make nicer links to SocialMedia 
@@ -39,6 +44,9 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 
 
 ##Done:
+- 2016-08-05 added github link
+- 2016-08-05 added new branch "relaunch" with new template
+- 2016-08-05 add spiderable
 - 2016-04-25 deploy on own server
 - 2016-04-24  
 - 2015-12-23 edit content e.g.  through in place textboxes
