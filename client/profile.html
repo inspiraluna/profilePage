@@ -1,30 +1,4 @@
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>Nico Krause - (IT Consultant, Coworking Space Founder, Yoga Teacher)</title>
-        <!-- Favicons-->
-        <link rel="shortcut icon" href="assets/images/favicon.png">
-        <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="assets/images/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="assets/images/apple-touch-icon-114x114.png">
-        <!-- Web Fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Suranna" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" type="text/css">
-        <link href="assets/css/themify-icons.css" rel="stylesheet">
-        <!-- Plugins-->
-        <link href="assets/css/magnific-popup.css" rel="stylesheet">
-        <link href="assets/css/vertical.min.css" rel="stylesheet">
-        <!-- Template core CSS-->
-        <link href="assets/css/template.css" rel="stylesheet">
-    </head>
-    <body>
-       {{>home}}
-    </body>
-
-<template name="home">
+<template name="layout">
  <!-- Preloader-->
         <div class="page-loader">
             <div class="loader">Loading...</div>
@@ -42,11 +16,12 @@
             <div class="menu-table">
                 <div class="menu-table-cell">
                     <ul class="navigation">
-                        <li><a href="/">Profile</a></li>
-<!--                         <li><a href="/resume">Resume</a></li>
-                        <li><a href="/portfolio">Portfolio</a></li>
-                        <li><a href="/blog">Journal</a></li>
-                        <li><a href="/contact">Contact</a></li> -->
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/it">IT</a></li>
+                        <li><a href="/yoga">Yoga</a></li>
+                        <li><a href="/yoga">Trips</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/contact">Video Call Me!</a></li>
                <!--          <li><a href="/shortcodes">Shortcodes</a></li> -->
                     </ul>
                 </div>
@@ -68,6 +43,39 @@
             <!-- Hero section end-->
             <!-- Content section-->
             <section class="split-content">
+                {{> yield}}
+                <!-- Counters end-->
+                <!-- Footer-->
+                <footer class="footer">
+                    <div class="container-fluid container-custom">
+                        <div class="row">
+                            <div class="col-md-2">
+                                {{> loginButtons}}
+                            </div>
+                            <div class="col-md-5">
+                                <p>© 2016 Nico Krause. All rights reserved</p>
+                            </div>
+                            <div class="col-md-5">
+                                <ul class="social-list">
+                                    <li><a href="https://twitter.com/inspiraluna" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="https://www.facebook.com/inspiraluna" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="https://soundcloud.com/inspiraluna" target="_blank"><i class="fa fa-soundcloud"></i></a></li> 
+                                    <li><a href="https://www.github.com/inspiraluna" target="_blank"><i class="fa fa-github"></i></a></li> 
+                                    <!-- <li><a href="#"><i class="fa fa-linkedin"></i></a></li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- Footer end-->
+            </section>
+            <!-- Content section end-->
+        </div>
+</template>
+<template name="yoga">
+now i display the yoga template!
+</template>
+<template name="home">
                 <!-- Hello text-->
                 <section class="module">
                     <div class="container-fluid container-custom">
@@ -221,41 +229,31 @@
                         </div>
                     </div>
                 </section> -->
-                <!-- Counters end-->
-                <!-- Footer-->
-                <footer class="footer">
-                    <div class="container-fluid container-custom">
-                        <div class="row">
-                            <div class="col-md-2">
-                                {{> loginButtons}}
-                            </div>
-                            <div class="col-md-5">
-                                <p>© 2016 Nico Krause. All rights reserved</p>
-                            </div>
-                            <div class="col-md-5">
-                                <ul class="social-list">
-                                    <li><a href="https://twitter.com/inspiraluna" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="https://www.facebook.com/inspiraluna" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="https://soundcloud.com/inspiraluna" target="_blank"><i class="fa fa-soundcloud"></i></a></li> 
-                                    <li><a href="https://www.github.com/inspiraluna" target="_blank"><i class="fa fa-github"></i></a></li> 
-                                    <!-- <li><a href="#"><i class="fa fa-linkedin"></i></a></li> -->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-                <!-- Footer end-->
-            </section>
-            <!-- Content section end-->
-        </div>
-        <!-- Scripts-->
-        <script src="assets/js/jquery-2.2.3.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA0rANX07hh6ASNKdBr4mZH0KZSqbHYc3Q"></script>
-        <script src="assets/js/plugins.min.js"></script>
-        <script src="assets/js/custom.js"></script>
-
+    
 </template>
+
+<!--     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Nico Krause - (IT Consultant, Coworking Space Founder, Yoga Teacher)</title>
+        <link rel="shortcut icon" href="assets/images/favicon.png">
+        <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="assets/images/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="assets/images/apple-touch-icon-114x114.png">
+        <link href="https://fonts.googleapis.com/css?family=Suranna" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" type="text/css">
+        <link href="assets/css/themify-icons.css" rel="stylesheet">
+        <link href="assets/css/magnific-popup.css" rel="stylesheet">
+        <link href="assets/css/vertical.min.css" rel="stylesheet">
+        <link href="assets/css/template.css" rel="stylesheet">
+    </head>
+    <body>
+       {{>home}}
+    </body> -->
+
+
 
 <template name="education">
     <li>
@@ -294,8 +292,6 @@
         </div>
     </div>
 </template>
-
-
 <template name="language">
      {{#if currentUser}}<button class="delete">&times;</button>{{/if}}
     <div class="skill">{{language}}<div class="icons pull-right">
