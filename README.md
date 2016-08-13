@@ -10,6 +10,12 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 
 
 ##TODO
+- make glassfish a secure server with letsencrypt
+- add webcall section
+	-- add HTML & JS to webcall template
+	-- add config params to webapp in sources 
+	-- add config params glassfish / tomcat 
+
 - add yoga section
 - add trips section
 - add coworking section
@@ -21,9 +27,9 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 - download CV as PDF (siehe footer im PDF)
 
 
+##BUGS
+- appear does not exist in home section for skills
 
-	
-- add content everywhere (e.g. bio)
 
 
 ##Nice2Have
@@ -44,6 +50,18 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 
 
 ##Done:
+- 2016-08-13 problem with glassfish jdk - update jdk to 8
+			- apt-get update
+- 2016-08-13 changed password on docker glassfish 
+				- connect to docker: docker exec -it sharp_austin bash
+				- https://docs.oracle.com/cd/E26576_01/doc.312/e24938/change-admin-password.htm#GSRFM00004
+- 2016-08-13 added glassfish docker to ashtanga
+		- docker run -d -p 4848:4848 -p 8080:8080 -p 8181:8181 tutum/glassfish
+			- https://github.com/tutumcloud/glassfish
+			- admin frontend https://www.le-space.de:4848/
+
+	
+
 - 2016-08-05 added github link
 - 2016-08-05 added new branch "relaunch" with new template
 - 2016-08-05 add spiderable

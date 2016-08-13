@@ -1,9 +1,8 @@
 
 if (Meteor.isClient) {
 
-  Template.home.helpers({
-
-      options: function (parentContext) {
+Template.registerHelper( 'options', (parentContext) => { 
+  //options: function () {
 
         var config = Configs.findOne({'key':parentContext.hash.field});
         console.log();
@@ -13,8 +12,6 @@ if (Meteor.isClient) {
           position: 'left',
           value: config?config.value:'no '+parentContext.hash.field, 
           onsubmit: function (val, cb) {
-            // setTimeout(function () {
-                // Session.set('text', val);
 
                 var config = Configs.findOne({'key':parentContext.hash.field});
 
@@ -25,10 +22,11 @@ if (Meteor.isClient) {
                   Configs.update(config._id,{$set:{value: val}});
                 }
               cb();
-            // }, 1000);
           }
         };
-      },
+});
+
+Template.home.helpers({
      headline: function () {
         var config = Configs.findOne({'key':'headline'});
          return config?config.value:'';
@@ -84,8 +82,7 @@ if (Meteor.isClient) {
      educations: function () {
          return Educations.find({},{sort: {year: -1}});
      },
-     experiences: function () {
-      
+     experiences: function () {      
       var showTravels = (Session.get('travel')!==null);    
       return Experiences.find({trip: {"$exists":showTravels}},{sort: {year: -1}});
      },
@@ -223,10 +220,14 @@ if (Meteor.isClient) {
     }
   });
   
+
+  Template.layout.rendered  = function(){
+    $('.page-loader').animate({width: 'toggle'});
+
+  }
+
   Template.home.rendered = function(){
 
-    $('.page-loader').animate({width: 'toggle'});
-    
     $('.style-toggle').on('click', function(e) {
       $('body').toggleClass('dark')
       e.preventDefault();
@@ -302,19 +303,31 @@ if (Meteor.isClient) {
     /* ---------------------------------------------- /*
      * Progress bars, counters, pie charts animations
     /* ---------------------------------------------- */
+    // $('.progress-bar').each(function() {
+    //   $(this).appear(function() {
+    //     var percent = $(this).attr('aria-valuenow');
+    //     $(this).animate({'width' : (percent*100) + '%'});
+    //     $(this).parent('.progress').prev('.progress-title').find('.p-coutn').countTo({
+    //       from: 0,
+    //       to: (percent*100),
+    //       speed: 900,
+    //       refreshInterval: 30
+    //     });
+    //   });
+    // }); 
 
-      $('.progress-bar').each(function() {
-        $(this).appear(function() {
-          var percent = $(this).attr('aria-valuenow');
-          $(this).animate({'width' : percent + '%'});
-          $(this).parent('.progress').prev('.progress-title').find('.p-coutn').countTo({
-            from: 0,
-            to: percent,
-            speed: 900,
-            refreshInterval: 30
-          });
-        });
-      });
+      // $('.progress-bar').each(function() {
+      //   $(this).appear(function() {
+      //     var percent = ($(this).attr('aria-valuenow')*100);
+      //     $(this).animate({'width' : percent + '%'});
+      //     $(this).parent('.progress').prev('.progress-title').find('.p-coutn').countTo({
+      //       from: 0,
+      //       to: percent,
+      //       speed: 900,
+      //       refreshInterval: 30
+      //     });
+      //   });
+      // });
 
     $('.counter-timer').each(function() {
       $(this).appear(function() {
@@ -496,19 +509,24 @@ if (Meteor.isClient) {
 
   Template.skill.rendered = function() {
 
-
-    $('.progress-bar').each(function() {
-      $(this).appear(function() {
-        var percent = $(this).attr('aria-valuenow');
-        $(this).animate({'width' : (percent*100) + '%'});
-        $(this).parent('.progress').prev('.progress-title').find('.p-coutn').countTo({
+    var data = Template.instance().data;
+    
+   // $('.progress-bar').each(function() {
+     // console.log('okey iterating throug progress bar'+$( this ).attr('id'));
+        console.log('id: appeared:'+$("#skill_"+data._id).attr('id'));
+      $("#skill_"+data._id).appear(function() {
+        console.log('really appeared:'+$("#skill_"+data._id).attr('id'));
+        var percent = ($("#skill_"+data._id).attr('aria-valuenow')*100);
+        $("#skill_"+data._id).animate({'width' : (percent) + '%'});
+        $("#skill_"+data._id).parent('.progress').prev('.progress-title').find('.p-coutn').countTo({
           from: 0,
-          to: (percent*100),
+          to: percent,
           speed: 900,
           refreshInterval: 30
         });
       });
-    });
+
+   // }); 
 
     // var data = Template.instance().data;
     //   var newWidth = $('#skill_'+data._id).parent().width() * data.percent;

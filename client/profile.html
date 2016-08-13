@@ -16,13 +16,12 @@
             <div class="menu-table">
                 <div class="menu-table-cell">
                     <ul class="navigation">
-                        <li><a href="/">Home</a></li>
+                        <li><a href="/home">Home</a></li>
                         <li><a href="/it">IT</a></li>
                         <li><a href="/yoga">Yoga</a></li>
-                        <li><a href="/yoga">Trips</a></li>
+                        <li><a href="/trips">Trips</a></li>
                         <li><a href="/blog">Blog</a></li>
-                        <li><a href="/contact">Video Call Me!</a></li>
-               <!--          <li><a href="/shortcodes">Shortcodes</a></li> -->
+                        <li><a href="/webcall">Video Call Me!</a></li>
                     </ul>
                 </div>
             </div>
@@ -72,8 +71,20 @@
             <!-- Content section end-->
         </div>
 </template>
+<template name="it">
+it under construction...
+</template>
 <template name="yoga">
-now i display the yoga template!
+yoga under construction...
+</template>
+<template name="trips">
+trips under construction...
+</template>
+<template name="blog">
+blog under construction...
+</template>
+<template name="webcall">
+webcall under construction...
 </template>
 <template name="home">
                 <!-- Hello text-->
@@ -281,14 +292,14 @@ now i display the yoga template!
 </template>
 <template name="skill">
     <!-- Progress bar end-->
-    <div class="progress-item" id="skill_{{_id}}">
+    <div class="progress-item">
         {{#if currentUser}}<div>
                                 <button class="delete">&times;</button>
                            </div>
         {{/if}} 
         <div class="progress-title">{{skill}}, <span class="p-coutn"></span>%</div>
         <div class="progress">
-            <div class="progress-bar" aria-valuenow="{{percent}}" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+            <div id="skill_{{_id}}" class="progress-bar" aria-valuenow="{{percent}}" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
     </div>
 </template>
