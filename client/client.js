@@ -1,6 +1,8 @@
 
 if (Meteor.isClient) {
 
+document.title = "Nico Krause - (IT Consultant, Ex-Coworking Space Founder, Yoga Practicioner)"; 
+
 Template.registerHelper( 'options', (parentContext) => { 
   //options: function () {
 
@@ -89,9 +91,6 @@ Template.home.helpers({
      travel: function () {
          return Session.get('travel');
      },
-     skills: function () {
-         return Skills.find({},{sort: {skill: 1}});
-     },
      languages: function () {
          return Languages.find({},{sort: {language: 1}});
      },
@@ -100,6 +99,11 @@ Template.home.helpers({
      }
   }); 
 
+  Template.it.helpers({
+     skills: function () {
+         return Skills.find({},{sort: {skill: 1}});
+     }
+  });
 
   Template.education.events({
     "click .delete": function () {
@@ -507,26 +511,29 @@ Template.home.helpers({
 
   }
 
-  Template.skill.rendered = function() {
+  Template.it.rendered = function() {
 
     var data = Template.instance().data;
     
-   // $('.progress-bar').each(function() {
+   $('.progress-bar').each(function() {
      // console.log('okey iterating throug progress bar'+$( this ).attr('id'));
-        console.log('id: appeared:'+$("#skill_"+data._id).attr('id'));
-      $("#skill_"+data._id).appear(function() {
-        console.log('really appeared:'+$("#skill_"+data._id).attr('id'));
-        var percent = ($("#skill_"+data._id).attr('aria-valuenow')*100);
-        $("#skill_"+data._id).animate({'width' : (percent) + '%'});
-        $("#skill_"+data._id).parent('.progress').prev('.progress-title').find('.p-coutn').countTo({
-          from: 0,
-          to: percent,
-          speed: 900,
-          refreshInterval: 30
-        });
+       console.log('id: rendered:'+$(this).attr('id'));
+
+    //  $(this).appear(function() {
+     $(this).appear(function() {
+        console.log('really appeared:'); //+$('#skill_'+data._id).attr('id'));
+        //var percent = ($("#skill_"+data._id).attr('aria-valuenow')*100);
+        //$("#skill_"+data._id).animate({'width' : (percent) + '%'});
+
+        // $("#skill_"+data._id).parent('.progress').prev('.progress-title').find('.p-coutn').countTo({
+        //   from: 0,
+        //   to: percent,
+        //   speed: 900,
+        //   refreshInterval: 30
+        // });
       });
 
-   // }); 
+   }); 
 
     // var data = Template.instance().data;
     //   var newWidth = $('#skill_'+data._id).parent().width() * data.percent;
@@ -549,12 +556,13 @@ Template.home.helpers({
         height: 14,
     }, 2000);
   };
-  
 
   Template.hobby.events({
     "click .delete": function () {
       Hobbies.remove(this._id);
     }
   });  
+
+  
 
 }

@@ -1,0 +1,77 @@
+<template name="webcall">
+
+  <button id="start">Start Video</button>
+  <button id="stop">Stop Video</button>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <h3>Local stream</h3>
+          <video id="videoInput" autoplay width="480px" height="360px" poster="img/webrtc.png"></video>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-5">
+          <h3>Remote stream</h3>
+          <video id="videoOutput" autoplay width="480px" height="360px" poster="img/webrtc.png"></video>
+        </div>
+      </div>
+    </div>
+
+              <!--   <section class="module">
+                    <div class="container-fluid container-custom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6>Webcall.</h6>
+                            </div>
+                            <div class="col-sm-8">
+                                       Please call me when you see me online! 
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-md-5">
+                            <label class="control-label" for="name">Name</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="name" name="name" class="form-control" type="text"
+                                        onkeydown="if (event.keyCode == 13) register();" />
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <a id="register" href="#" class="btn btn-primary"><span
+                                        class="glyphicon glyphicon-plus"></span> Register</a>
+                                </div>
+                            </div>
+
+                            <br /> <br /> <label class="control-label" for="peer">Peer</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="peer" name="peer" class="form-control" type="text"
+                                        onkeydown="if (event.keyCode == 13) call();">
+                                                             <select id="peer"></select> 
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <a id="call" href="#" class="btn btn-success"><span
+                                        class="glyphicon glyphicon-play"></span> Call</a> <a id="terminate"
+                                        href="#" class="btn btn-danger"><span
+                                        class="glyphicon glyphicon-stop"></span> Stop</a>
+                                </div>
+                            </div>
+                            <br /> <label class="control-label" for="console">Console</label><br>
+                            <br>
+                            <div id="console" class="democonsole">
+                                <ul></ul>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div id="videoBig">
+                                <video id="videoOutput" autoplay width="640px" height="480px"
+                                    poster="img/webrtc.png"></video>
+                            </div>
+                            <div id="videoSmall">
+                                <video id="videoInput" autoplay width="240px" height="180px"
+                                    poster="img/webrtc.png"></video>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </section> -->
+</template>

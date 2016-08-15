@@ -1,0 +1,60 @@
+<template name="it">
+                <!-- Services-->
+                <section class="module">
+                    <div class="container-fluid container-custom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6>Services.</h6>
+                            </div>
+                            <div class="col-sm-8">
+                                {{#if currentUser}}
+                                  <p>{{> m_editable options field='serviceIntro' }}</p>
+                                {{else}}
+                                   <p>{{serviceIntro}}</p>
+                                {{/if}}
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <ul class="service-list">
+                                            <li>IT-Consulting</li>
+                                            <li>Software & Web Development (fullstack)</li>
+                                            <li>Training</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <ul class="service-list">
+                                            <li>Web & Mobile-Apps (HTML5/Cordova & native) </li>
+                                            <li>Javascript</li>
+                                            <li>Java</li>
+                                            <li>WebRTC</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Services end-->
+                <!-- Professional skills-->
+                <section class="module">
+                    <div class="container-fluid container-custom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6>IT skills.</h6>
+                            </div>
+                            <div> {{#if currentUser}}
+                                 <form class="new-skill">
+                                        <input type="text" name="skill" placeholder="Skill" />
+                                        <input type="text" name="percent" placeholder="0.1 to 1.0" />
+                                        <input type="submit" value="OK" />
+                                  </form>
+                                 {{/if}}
+                            </div>
+                            <div class="col-sm-8">
+                                  {{#each skills}}
+                                      {{> skill}}
+                                  {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+</template>

@@ -12,7 +12,6 @@ session                 # Client-side reactive dictionary for your app
 jquery                  # Helpful client-side library
 
 
-autopublish             # Publish all data to the clients (for prototyping)
 accounts-password
 accounts-ui
 es5-shim
@@ -26,10 +25,13 @@ standard-minifier-js
 iron:router
 natestrauser:x-editable-bootstrap
 spiderable
-poetic:jquery.appear
 mrt:jquery-imagesloaded
 outatime:easy-pie-chart
 mrt:fitvids
 gabrielengel:konecty-magnific-popup
 isotope:isotope
+tsega:bootstrap3-lightbox
 johnantoni:meteor-appear
+lepozepo:streams
+random
+check

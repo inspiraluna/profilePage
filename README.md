@@ -10,30 +10,27 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 
 
 ##TODO
-- make glassfish a secure server with letsencrypt
-- add webcall section
-	-- add HTML & JS to webcall template
-	-- add config params to webapp in sources 
-	-- add config params glassfish / tomcat 
-
+- add webrtc call communication 
 - add yoga section
 - add trips section
 - add coworking section
 - add press section
 - add blog (all kind of stuffs e.g. software stuffs, travel, coworking, remote working)
+- add seo
+- send me notification to browser when I am online with my phone service workers
+			http://stackoverflow.com/questions/27221203/send-desktop-notifications-in-chrome-or-firefox-from-a-closed-web-app
+			https://github.com/NekR/offline-plugin
+			https://jakearchibald.github.io/isserviceworkerready/
 - translation 
 	https://github.com/TAPevents/tap-i18n-db
 	https://github.com/TAPevents/tap-i18n
 - download CV as PDF (siehe footer im PDF)
 
-
 ##BUGS
 - appear does not exist in home section for skills
 
-
-
 ##Nice2Have
-- add webrtc call communication 
+- port current java webrtc implementation to a meteorjs version 
 - make already edited texts editable (what exactly?!)
 - improve delete of hobbies (* at the wrong position)
 - make nicer links to SocialMedia 
@@ -50,6 +47,22 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 
 
 ##Done:
+- 2016-08-13 - make glassfish a secure server with letsencrypt
+			 - run ./letsencrypt-auto --manual certonly in /opt/letsencrypt (on ahshtanga)
+			 - copy to /var/www/meteor/nicokrause.com (.well-know/acme-challenge)
+			 - result: Congratulations! Your certificate and chain have been saved at
+				/etc/letsencrypt/live/nicokrause.com/fullchain.pem. Your cert will
+			   		expire on 2016-11-11. To obtain a new or tweaked version of this
+			   		certificate in the future, simply run letsencrypt-auto again. To
+			   		non-interactively renew *all* of your certificates, run
+			   		"letsencrypt-auto renew"
+			- put certifcates to the right place: 
+				https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-14-04
+			- add webcall section 
+				-- add HTML & JS to webcall template
+				-- add config params to webapp in sources 
+				-- add config params glassfish / tomcat 
+
 - 2016-08-13 problem with glassfish jdk - update jdk to 8
 			- apt-get update
 - 2016-08-13 changed password on docker glassfish 
@@ -83,8 +96,6 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 	http://meteor-editable.meteor.com/docs
 	https://atmospherejs.com/workman/meteor-editable
 
-##Known bugs:
-- when click on x-editable error:  'string.replace is not a function'	
 
 
 
