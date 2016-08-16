@@ -46,7 +46,11 @@
                                 <div class="col-md-6">
                                     <input id="peer" name="peer" class="form-control" type="text"
                                         onkeydown="if (event.keyCode == 13) call();">
-                                    <select id="peer"></select> 
+                                    <select id="peer">
+                                        {{#each peer in peers}}
+                                            <option>{{peer}}</option>
+                                        {{/each}}
+                                    </select> 
                                 </div>
                                 <div class="col-md-6 text-right">
                                     <a id="call" href="#" class="btn btn-success"><span

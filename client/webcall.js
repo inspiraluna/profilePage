@@ -17,6 +17,33 @@
 var ws = new WebSocket('wss://' + location.host + '/jWebrtc/ws');
 var kurentoUtils = require('kurento-utils');
 
+
+Template.webcall.rendered = function() {
+  setRegisterState(NOT_REGISTERED);
+  //var drag = new Draggabilly(document.getElementById('videoSmall'));
+  videoInput = document.getElementById('videoInput');   // <video>-element
+  videoOutput = document.getElementById('videoOutput'); // <video>-element
+  document.getElementById('name').focus();
+}
+
+Template.webcall.helpers({
+  peers: function () {
+        return Session.get('peers'); 
+  }
+});
+
+Template.webcall.events({
+  "click #register": function () {
+      register();
+  },
+  "click #call": function () {
+      call();
+  },
+  "click #terminate": function () {
+      stop();
+  }
+});
+
 var videoInput;
 var videoOutput;
 var webRtcPeer;
@@ -83,30 +110,6 @@ function setCallState(nextState) {
   callState = nextState;
 }
 
-// window.onload = function() {
-Template.webcall.rendered = function() {
-  console.log('webcall rendered....');
-
-  setRegisterState(NOT_REGISTERED);
-  //var drag = new Draggabilly(document.getElementById('videoSmall'));
-  videoInput = document.getElementById('videoInput');   // <video>-element
-  videoOutput = document.getElementById('videoOutput'); // <video>-element
-  document.getElementById('name').focus();
-}
-
-Template.webcall.events({
-  "click #register": function () {
-      register();
-  },
-  "click #call": function () {
-      call();
-  },
-  "click #terminate": function () {
-      stop();
-  }
-});
-
-
 window.onbeforeunload = function() {
   ws.close();
 }
@@ -120,11 +123,10 @@ ws.onmessage = function(message) {
       registerResponse(parsedMessage);
     break;
   case 'registeredUsers':
-    // server sends a list of all registered users including the user on this client
       updateRegisteredUsers(JSON.parse(parsedMessage.response));
     break;
   case 'callResponse':
-    callResponse(parsedMessage);
+      callResponse(parsedMessage);
     break;
   case 'incomingCall':
     incomingCall(parsedMessage);
@@ -167,16 +169,11 @@ function registerResponse(message) {
 
 function updateRegisteredUsers(userList) {
   console.log("User list: " + userList);
-  var peers = $("#peer");
-  var name;
-  for (var i = 0; i < userList.length; i++) {
-    name = userList[i];
-    console.log('adding user option...'+name);
-    if (name != $('#name').val()) {
-      console.log('added again!');
-      peers.append($("<option />").val(name).text(name));
-    }
+  var index = userList.indexOf(Session.get('name'));
+  if (index > -1) {
+        userList.splice(index, 1);
   }
+  Session.set('peers', userList);
 }
 
 function playResponse(message) {
@@ -284,6 +281,7 @@ function register() {
     return;
   }
   setRegisterState(REGISTERING);
+  Session.set('name', name);
 
   var message = {
     id : 'register',
