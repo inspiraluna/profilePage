@@ -1,22 +1,5 @@
 <template name="webcall">
 
-<!--   <button id="start">Start Video</button>
-  <button id="stop">Stop Video</button>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-5">
-          <h3>Local stream</h3>
-          <video id="videoInput" autoplay width="480px" height="360px" poster="img/webrtc.png"></video>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-md-5">
-          <h3>Remote stream</h3>
-          <video id="videoOutput" autoplay width="480px" height="360px" poster="img/webrtc.png"></video>
-        </div>
-      </div>
-    </div> -->
-
     <section class="module">
                     <div class="container-fluid container-custom">
                         <div class="row">
@@ -44,9 +27,9 @@
                             <br /> <br /> <label class="control-label" for="peer">Peer</label>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="peer" name="peer" class="form-control" type="text"
-                                        onkeydown="if (event.keyCode == 13) call();">
-                                    <select id="peer">
+                                 <!--    <input id="peer" name="peer" class="form-control" type="text"
+                                        onkeydown="if (event.keyCode == 13) call();"> -->
+                                    <select name="peer" id="peer">
                                         {{#each peer in peers}}
                                             <option>{{peer}}</option>
                                         {{/each}}

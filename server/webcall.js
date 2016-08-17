@@ -1,6 +1,5 @@
-
-
 var ws_uri = "ws://localhost:8888/kurento";
+
 if (Meteor.isServer) {
     //enter ip of kurento media server
     if(Meteor.settings.private && Meteor.settings.private.ws_uri) {

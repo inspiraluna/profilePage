@@ -10,7 +10,7 @@ if (Meteor.isClient) {
 
   Template.registerHelper( 'options', (parentContext) => { 
     //options: function () {
-
+    console.log('parentContext:'+parentContext);
           var config = Configs.findOne({'key':parentContext.hash.field});
           return {
             type: 'textarea',

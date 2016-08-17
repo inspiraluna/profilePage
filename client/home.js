@@ -1,4 +1,76 @@
 
+Template.home.helpers({
+     headline: function () {
+        var config = Configs.findOne({'key':'headline'});
+         return config?config.value:'';
+     },
+     bio: function () {
+         var config = Configs.findOne({'key':'bio'});
+         return config?config.value:'';
+     },
+     serviceIntro: function () {
+         var config = Configs.findOne({'key':'serviceIntro'});
+         return config?config.value:'';
+     },
+     fullname: function () {
+         var config = Configs.findOne({'key':'fullname'}); 
+        return (config==null)?'':config.value;
+     },
+     birthday: function () {
+         var config = Configs.findOne({'key':'birthday'}); 
+        return (config==null)?'':config.value;
+     },
+     address: function () {
+         var config = Configs.findOne({'key':'address'}); 
+        return (config==null)?'':config.value;
+     },
+     telefon: function () {
+         var config = Configs.findOne({'key':'telefon'}); 
+        return (config==null)?'':config.value;
+     },
+     email: function () {
+         var config = Configs.findOne({'key':'email'}); 
+         return (config==null)?'':config.value;
+     },
+     website: function () {
+         var config = Configs.findOne({'key':'website'}); 
+         return (config==null)?'':config.value;
+     },
+     twitter: function () {
+         var config = Configs.findOne({'key':'twitter'}); 
+        return (config==null)?'':config.value;
+     },
+     github: function () {
+         var config = Configs.findOne({'key':'github'}); 
+        return (config==null)?'':config.value;
+     },
+     facebook: function () {
+         var config = Configs.findOne({'key':'facebook'}); 
+         return (config==null)?'':config.value;
+     },
+     skype: function () {
+         var config = Configs.findOne({'key':'skype'}); 
+         return (config==null)?'':config.value;
+     },
+     educations: function () {
+         return Educations.find({},{sort: {year: -1}});
+     },
+     experiences: function () {      
+      var showTravels = (Session.get('travel')!==null);    
+      return Experiences.find({trip: {"$exists":showTravels}},{sort: {year: -1}});
+     },
+     travel: function () {
+         return Session.get('travel');
+     },
+     languages: function () {
+         return Languages.find({},{sort: {language: 1}});
+     },
+     hobbies: function () {
+         return Hobbies.find({},{sort: {hobby: 1}});
+     }
+  }); 
+
+
   Template.home.rendered = function(){
 
     $('.style-toggle').on('click', function(e) {
@@ -281,77 +353,6 @@
   }
 
   
-Template.home.helpers({
-     headline: function () {
-        var config = Configs.findOne({'key':'headline'});
-         return config?config.value:'';
-     },
-     bio: function () {
-         var config = Configs.findOne({'key':'bio'});
-         return config?config.value:'';
-     },
-     serviceIntro: function () {
-         var config = Configs.findOne({'key':'serviceIntro'});
-         return config?config.value:'';
-     },
-     fullname: function () {
-         var config = Configs.findOne({'key':'fullname'}); 
-        return (config==null)?'':config.value;
-     },
-     birthday: function () {
-         var config = Configs.findOne({'key':'birthday'}); 
-        return (config==null)?'':config.value;
-     },
-     address: function () {
-         var config = Configs.findOne({'key':'address'}); 
-        return (config==null)?'':config.value;
-     },
-     telefon: function () {
-         var config = Configs.findOne({'key':'telefon'}); 
-        return (config==null)?'':config.value;
-     },
-     email: function () {
-         var config = Configs.findOne({'key':'email'}); 
-         return (config==null)?'':config.value;
-     },
-     website: function () {
-         var config = Configs.findOne({'key':'website'}); 
-         return (config==null)?'':config.value;
-     },
-     twitter: function () {
-         var config = Configs.findOne({'key':'twitter'}); 
-        return (config==null)?'':config.value;
-     },
-     github: function () {
-         var config = Configs.findOne({'key':'github'}); 
-        return (config==null)?'':config.value;
-     },
-     facebook: function () {
-         var config = Configs.findOne({'key':'facebook'}); 
-         return (config==null)?'':config.value;
-     },
-     skype: function () {
-         var config = Configs.findOne({'key':'skype'}); 
-         return (config==null)?'':config.value;
-     },
-     educations: function () {
-         return Educations.find({},{sort: {year: -1}});
-     },
-     experiences: function () {      
-      var showTravels = (Session.get('travel')!==null);    
-      return Experiences.find({trip: {"$exists":showTravels}},{sort: {year: -1}});
-     },
-     travel: function () {
-         return Session.get('travel');
-     },
-     languages: function () {
-         return Languages.find({},{sort: {language: 1}});
-     },
-     hobbies: function () {
-         return Hobbies.find({},{sort: {hobby: 1}});
-     }
-  }); 
-
    //Languages
   Template.home.events({
 

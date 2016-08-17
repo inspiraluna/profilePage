@@ -10,11 +10,13 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 
 
 ##TODO
-- add webrtc call communication 
+- (webcall) update options.configuration (iceServers) with appConfig response 
+- (webcall) add available flag (widget) if I am online (a certain user)
+- (webcall) add position (city) to website.
 - add yoga section
 - add trips section
 - add coworking section
-- add press section
+- add press section (find articles)
 - add blog (all kind of stuffs e.g. software stuffs, travel, coworking, remote working)
 - add seo
 - send me notification to browser when I am online with my phone service workers
@@ -27,10 +29,16 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 - download CV as PDF (siehe footer im PDF)
 
 ##BUGS
-- appear does not exist in home section for skills
+- (webcall) if user registers on phone it does not update the users dropdown
+- (webcall) own registered username should not be displayed in calling dropdown
+- (home) text should be formatted with linebreaks and maybe even other formatting 
+	- replace text editor with html editor
+- (it-skills) appear does not exist in home section for skills
 
 ##Nice2Have
+- send location of mobile to server - in order to display it in widget and elsewhere
 - port current java webrtc implementation to a meteorjs version 
+old stuff - please proof!
 - make already edited texts editable (what exactly?!)
 - improve delete of hobbies (* at the wrong position)
 - make nicer links to SocialMedia 
@@ -40,6 +48,7 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 - add markdown for texts (textareas)
 - add clone me on github flag on webpage
 
+
 ##Info
 ``
 	docker run -d  -e ROOT_URL=http://www.nicokrause.com  -e MONGO_URL=mongodb://username:password@nicokrause.com/dbname -v /var/www/meteor/nicokrause.com:/bundle -p 3002:80 --log-driver=syslog     meteorhacks/meteord:base
@@ -47,6 +56,7 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 
 
 ##Done:
+- 2016-08-07 - add webrtc call communication 
 - 2016-08-13 - make glassfish a secure server with letsencrypt
 			 - run ./letsencrypt-auto --manual certonly in /opt/letsencrypt (on ahshtanga)
 			 - copy to /var/www/meteor/nicokrause.com (.well-know/acme-challenge)

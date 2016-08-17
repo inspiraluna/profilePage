@@ -1,0 +1,98 @@
+<template name="home">
+                <!-- Hello text-->
+                <section class="module">
+                    <div class="container-fluid container-custom">
+                        <div class="row">
+                            <div class="col-sm-12">
+                               {{#if currentUser}}<h1>{{> m_editable options field='headline' }}</h1>
+                               {{else}}
+                                   <h1>{{headline}}</h1>
+                               {{/if}}
+                                
+                                {{#if currentUser}}
+                                  <p>{{> m_editable options field='bio' }}</p>
+                                {{else}}
+                                   <p>{{bio}}</p>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Hello text end-->
+                <!-- Personal info-->
+                <section class="module">
+                    <div class="container-fluid container-custom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6>Personal Info.</h6>
+                            </div>
+                            <div class="col-sm-8">
+                                <ul>
+                                <li>Name: 
+                                {{#if currentUser}}{{> m_editable options field='fullname' }}
+                                {{else}}{{fullname}}{{/if}}</li>
+
+                                <li>Birthday: {{#if currentUser}}{{> m_editable options field='birthday' }}{{else}} {{birthday}}{{/if}}</li>
+
+                                <li>Address: {{#if currentUser}}{{> m_editable options field='address' }}{{else}}{{address}}{{/if}}</li>
+
+                                <li>Phone: {{#if currentUser}}{{> m_editable options field='telefon' }}{{else}}{{telefon}}{{/if}}</li>
+                            
+                                <li>E-mail: {{#if currentUser}}{{> m_editable options field='email' }}{{else}}<a href="mailto:{{email}}">{{email}}</a>{{/if}}</li>
+
+                                <li>Website: {{#if currentUser}}{{> m_editable options field='website' }}{{else}}<a href="http://{{website}}">{{website}}</a>{{/if}}</li>
+                              
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Personal info end-->
+                <!-- Professional skills end-->
+                <!-- Counters-->
+<!--                 <section class="module">
+                    <div class="container-fluid container-custom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6>My Experience.</h6>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="row">
+
+                                    <div class="col-xs-6">
+                                        <div class="counter">
+                                            <h2 class="counter-number"><span class="counter-timer" data-from="0" data-to="12000">0</span></h2>
+                                            <div class="counter-title">Theme Users</div>
+                                        </div>
+                                    </div>
+      
+                                    <div class="col-xs-6">
+                                        <div class="counter">
+                                            <h2 class="counter-number"><span class="counter-timer" data-from="0" data-to="8">0</span></h2>
+                                            <div class="counter-title">Total downloads</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-6">
+                                        <div class="counter">
+                                            <h2 class="counter-number"><span class="counter-timer" data-from="0" data-to="18">0</span></h2>
+                                            <div class="counter-title">Design experiments</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-6">
+                                        <div class="counter">
+                                            <h2 class="counter-number"><span class="counter-timer" data-from="0" data-to="64">0</span></h2>
+                                            <div class="counter-title">Launched startups</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section> -->
+    
+</template>
