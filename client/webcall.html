@@ -8,6 +8,9 @@
                             </div>
                             <div class="col-sm-8">
                                        Please call me when you see me online! 
+                                       <p>
+                                       Name: {{onlineStatus.name}} is {{onlineStatus.status}}
+                                       </p>
                             </div>
                         </div>
                         <div class="row">
@@ -15,8 +18,7 @@
                             <label class="control-label" for="name">Name</label>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="name" name="name" class="form-control" type="text"
-                                        onkeydown="if (event.keyCode == 13) register();" />
+                                    <input id="name" name="name" class="form-control" type="text"  />
                                 </div>
                                 <div class="col-md-6 text-right">
                                     <a id="register" href="#" class="btn btn-primary"><span

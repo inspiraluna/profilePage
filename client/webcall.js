@@ -28,7 +28,11 @@ Template.webcall.rendered = function() {
 
 Template.webcall.helpers({
   peers: function () {
+        console.log('peers:'+Session.get('peers'));
         return Session.get('peers'); 
+  },
+  onlineStatus: function(){
+        return Session.get('onlineStatus');
   }
 });
 
@@ -41,6 +45,9 @@ Template.webcall.events({
   },
   "click #terminate": function () {
       stop();
+  },
+  "keydown #name": function(event){
+    if (event.keyCode == 13) register();
   }
 });
 
@@ -50,6 +57,7 @@ var webRtcPeer;
 var response;
 var callerMessage;
 var from;
+var myConsultant = {name: '', status: ''};
 
 var registerName = null;
 var registerState = null;
@@ -145,14 +153,32 @@ ws.onmessage = function(message) {
     });
     break;
   case 'playResponse':
-    playResponse(parsedMessage);
-    break;
+      playResponse(parsedMessage);
+      break;
   case 'playEnd':
     playEnd();
     break;
+  case 'responseOnlineStatus':
+      setOnlineStatus(parsedMessage);
+      break;
+  case 'playResponse':
+      playResponse(parsedMessage);
+      break;
+  case 'playEnd':
+      playEnd();
+      break;
   default:
     console.error('Unrecognized message', parsedMessage);
   }
+}
+
+function setOnlineStatus(message) {
+    Session.set('onlineStatus', message);
+  // var statusTextElement = $("#webrtc-online-status");
+  // if (message.message == myConsultant.name) {
+  //   myConsultant.status = message.response;
+  // }
+  // statusTextElement.text(myConsultant.name + ' is ' + myConsultant.status);
 }
 
 function registerResponse(message) {
@@ -168,11 +194,8 @@ function registerResponse(message) {
 }
 
 function updateRegisteredUsers(userList) {
-  console.log("User list: " + userList);
   var index = userList.indexOf(Session.get('name'));
-  if (index > -1) {
-       userList = userList.splice(index, 1);
-  }
+  if (index > -1) userList.splice(index, 1);
   Session.set('peers', userList);
 }
 
