@@ -81,31 +81,31 @@ if (Meteor.isClient) {
     /* ---------------------------------------------- /*
      * Progress bars, counters, pie charts animations
     /* ---------------------------------------------- */
-    // $('.progress-bar').each(function() {
-    //   $(this).appear(function() {
-    //     var percent = $(this).attr('aria-valuenow');
-    //     $(this).animate({'width' : (percent*100) + '%'});
-    //     $(this).parent('.progress').prev('.progress-title').find('.p-coutn').countTo({
-    //       from: 0,
-    //       to: (percent*100),
-    //       speed: 900,
-    //       refreshInterval: 30
-    //     });
-    //   });
-    // }); 
-
       // $('.progress-bar').each(function() {
       //   $(this).appear(function() {
-      //     var percent = ($(this).attr('aria-valuenow')*100);
-      //     $(this).animate({'width' : percent + '%'});
+      //     var percent = $(this).attr('aria-valuenow');
+      //     $(this).animate({'width' : (percent*100) + '%'});
       //     $(this).parent('.progress').prev('.progress-title').find('.p-coutn').countTo({
       //       from: 0,
-      //       to: percent,
+      //       to: (percent*100),
       //       speed: 900,
       //       refreshInterval: 30
       //     });
       //   });
-      // });
+      // }); 
+
+      $('.progress-bar').each(function() {
+        $(this).appear(function() {
+          var percent = ($(this).attr('aria-valuenow')*100);
+          $(this).animate({'width' : percent + '%'});
+          $(this).parent('.progress').prev('.progress-title').find('.p-coutn').countTo({
+            from: 0,
+            to: percent,
+            speed: 900,
+            refreshInterval: 30
+          });
+        });
+      });
 
     $('.counter-timer').each(function() {
       $(this).appear(function() {

@@ -24,7 +24,45 @@ img {
     max-width: 100%;
     height: auto;
 }
+/*
+video {
+  left: 0;
+  position: absolute;
+  z-index: -1;
+  //opacity: 0.78;
+  width: 100%;
+  max-width: 100%;
+}
+*/
 
+div#videoBig {
+    position: absolute;
+/*    width: 640px;
+    height: 480px;*/
+    width: 100%;
+    max-width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+div#videoSmall {
+    width: 240px;
+    height: 180px;
+    padding: 0px;
+    position: absolute;
+    top: 15px;
+    left: 400px;
+    cursor: pointer;
+    z-index: 10;
+    padding: 0px;
+}
+
+div.dragged {
+    cursor: all-scroll !important;
+    border-color: blue !important;
+    z-index: 10 !important;
+}
 iframe {
     border: 0;
 }

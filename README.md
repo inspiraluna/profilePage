@@ -10,6 +10,10 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 
 
 ##TODO
+- (webcall) display register input box when 'support' is online
+- (webcall) if support is online and registration down display call button
+- (webcall)  don't display other connected user in dropdown
+- (mobile) make template responsive
 - (webcall) update options.configuration (iceServers) with appConfig response 
 - (webcall) add available flag (widget) if I am online (a certain user)
 - (webcall) add position (city) to website.
@@ -56,6 +60,7 @@ old stuff - please proof!
 
 
 ##Done:
+- 3026-08-20 - (webcall) enable draggable for small video
 - 2016-08-07 - add webrtc call communication 
 - 2016-08-13 - make glassfish a secure server with letsencrypt
 			 - run ./letsencrypt-auto --manual certonly in /opt/letsencrypt (on ahshtanga)

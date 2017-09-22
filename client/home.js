@@ -70,18 +70,6 @@ Template.home.helpers({
      }
   }); 
 
-  // Template.home.rendered  = function(){
-   
-
-  // }
-  Template.home.rendered = function(){
-
-
-
-
-  }
-
-  
    //Languages
   Template.home.events({
 

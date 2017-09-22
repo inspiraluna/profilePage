@@ -16,24 +16,46 @@
  */
 var ws = new WebSocket('wss://' + location.host + '/jWebrtc/ws');
 var kurentoUtils = require('kurento-utils');
+var customerSupportUser  = 'nico';
+var configuration = {"iceServers":[{"urls":"stun:webrtc.a-fk.de:3478"},{"urls":"turn:webrtc.a-fk.de:3478","username":"webrtc","credential":"fondkonzept"}]};
 
+ws.onopen = function() {
+    var user = {name:customerSupportUser};
+    checkOnlineStatus(user);
+}
 
 Template.webcall.rendered = function() {
-  setRegisterState(NOT_REGISTERED);
-  //var drag = new Draggabilly(document.getElementById('videoSmall'));
-  videoInput = document.getElementById('videoInput');   // <video>-element
-  videoOutput = document.getElementById('videoOutput'); // <video>-element
-  document.getElementById('name').focus();
+    setRegisterState(NOT_REGISTERED);
+
+    $('#videoSmall').draggable()
+    videoInput = document.getElementById('videoInput');   // <video>-element
+    videoOutput = document.getElementById('videoOutput'); // <video>-element
 }
 
 Template.webcall.helpers({
   peers: function () {
-        console.log('peers:'+Session.get('peers'));
+        console.log('peers:'+JSON.stringify(Session.get('peers')));
         return Session.get('peers'); 
   },
   onlineStatus: function(){
+        console.log('onlineStatus:'+JSON.stringify(Session.get('onlineStatus')));
         return Session.get('onlineStatus');
+  },
+  online: function(){
+      var status = Session.get('onlineStatus');
+      if(status.response=='online') {
+        return true;
+      }
+      else return false;
+  },
+  callstate: function(){
+    return  Session.get("callState");
+  },
+  registerState: function(state){
+    console.log('asking for state:'+state);
+    return Session.get("registerState")==state;
   }
+
 });
 
 Template.webcall.events({
@@ -60,7 +82,7 @@ var from;
 var myConsultant = {name: '', status: ''};
 
 var registerName = null;
-var registerState = null;
+//var registerState = null;
 const NOT_REGISTERED = 0;
 const REGISTERING = 1;
 const REGISTERED = 2;
@@ -81,10 +103,11 @@ function setRegisterState(nextState) {
   default:
     return;
   }
-  registerState = nextState;
+  
+  Session.set("registerState",nextState);
 }
 
-var callState = null;
+//var callState = null;
 const NO_CALL = 0;          // client is idle
 const PROCESSING_CALL = 1;  // client is about to call someone (ringing the phone)
 const IN_CALL = 2;          // client is talking with someone
@@ -115,7 +138,7 @@ function setCallState(nextState) {
   default:
     return;
   }
-  callState = nextState;
+  Session.set("callState",nextState);
 }
 
 window.onbeforeunload = function() {
@@ -126,64 +149,87 @@ ws.onmessage = function(message) {
   var parsedMessage = JSON.parse(message.data);
   console.info('Received message: ' + message.data);
 
-  switch (parsedMessage.id) {
-  case 'registerResponse':
-      registerResponse(parsedMessage);
-    break;
-  case 'registeredUsers':
-      updateRegisteredUsers(JSON.parse(parsedMessage.response));
-    break;
-  case 'callResponse':
-      callResponse(parsedMessage);
-    break;
-  case 'incomingCall':
-    incomingCall(parsedMessage);
-    break;
-  case 'startCommunication':
-    startCommunication(parsedMessage);
-    break;
-  case 'stopCommunication':
-    console.info('Communication ended by remote peer');
-    stop(true);
-    break;
-  case 'iceCandidate':
-    webRtcPeer.addIceCandidate(parsedMessage.candidate, function(error) {
-      if (error)
-        return console.error('Error adding candidate: ' + error);
-    });
-    break;
-  case 'playResponse':
-      playResponse(parsedMessage);
-      break;
-  case 'playEnd':
-    playEnd();
-    break;
-  case 'responseOnlineStatus':
-      setOnlineStatus(parsedMessage);
-      break;
-  case 'playResponse':
-      playResponse(parsedMessage);
-      break;
-  case 'playEnd':
-      playEnd();
-      break;
-  default:
-    console.error('Unrecognized message', parsedMessage);
+  if(parsedMessage.params){
+        readAppConfig(parsedMessage);
+  }
+  else{
+      switch (parsedMessage.id) {
+        case 'registerResponse':
+            registerResponse(parsedMessage);
+          break;
+        case 'registeredUsers':
+            updateRegisteredUsers(JSON.parse(parsedMessage.response));
+          break;
+        case 'callResponse':
+            callResponse(parsedMessage);
+          break;
+        case 'incomingCall':
+          incomingCall(parsedMessage);
+          break;
+        case 'startCommunication':
+          startCommunication(parsedMessage);
+          break;
+        case 'stopCommunication':
+          console.info('Communication ended by remote peer');
+          stop(true);
+          break;
+        case 'iceCandidate':
+          webRtcPeer.addIceCandidate(parsedMessage.candidate, function(error) {
+            if (error)
+              return console.error('Error adding candidate: ' + error);
+          });
+          break;
+        case 'playResponse':
+            playResponse(parsedMessage);
+            break;
+        case 'playEnd':
+          playEnd();
+          break;
+        case 'responseOnlineStatus':
+            setOnlineStatus(parsedMessage);
+            break;
+        case 'playResponse':
+            playResponse(parsedMessage);
+            break;
+        case 'playEnd':
+            playEnd();
+            break;
+        default:
+          console.error('Unrecognized message', parsedMessage);
+        }
   }
 }
+function requestAppConfig(){
+        console.log('requesting app config');
+  var message = {
+    id : 'appConfig',
+                type: 'browser'
+  };
+  sendMessage(message);
+}
 
+function readAppConfig(message) {
+  if (message.params ) {
+                    configuration = message.params.pc_config;
+  }
+  if(message.result=="SUCCESS") return true;
+}
 function setOnlineStatus(message) {
+    console.log('online status:'+message);
     Session.set('onlineStatus', message);
-  // var statusTextElement = $("#webrtc-online-status");
-  // if (message.message == myConsultant.name) {
-  //   myConsultant.status = message.response;
-  // }
-  // statusTextElement.text(myConsultant.name + ' is ' + myConsultant.status);
+}
+function checkOnlineStatus(user) {
+  var message = {
+    id : 'checkOnlineStatus',
+    user : user.name
+  };
+  sendMessage(message);
 }
 
 function registerResponse(message) {
   if (message.response == 'accepted') {
     setRegisterState(REGISTERED);
+    // call();
   } else {
     setRegisterState(NOT_REGISTERED);
     var errorMessage = message.message ? message.message
@@ -195,6 +241,7 @@ function registerResponse(message) {
 
 function updateRegisteredUsers(userList) {
   var index = userList.indexOf(Session.get('name'));
+  // var index = userList.indexOf("") don't display sessionId's
   if (index > -1) userList.splice(index, 1);
   Session.set('peers', userList);
 }
@@ -241,7 +288,7 @@ function startCommunication(message) {
 
 function incomingCall(message) {
   // If busy just reject without disturbing user
-  if (callState != NO_CALL) {
+  if (Session.get('callstate') != NO_CALL) {
     var response = {
       id : 'incomingCallResponse',
       from : message.from,
@@ -259,7 +306,7 @@ function incomingCall(message) {
     showSpinner(videoInput, videoOutput);
 
     from = message.from;
-    var iceServers = {"iceServers":[{"urls":"turn:5.9.154.226:3478?transport=tcp","username":"akashionata","credential":"silkroad2015"}]};
+   // var iceServers = {"iceServers":[{"urls":"turn:5.9.154.226:3478?transport=tcp","username":"akashionata","credential":"silkroad2015"}]};
     
     var options = {
       localVideo : videoInput,
@@ -267,7 +314,7 @@ function incomingCall(message) {
       onicecandidate : onIceCandidate,
       onerror : onError
     }
-    options.configuration  = iceServers;
+    options.configuration  = configuration;
 
     webRtcPeer = new kurentoUtils.WebRtcPeer.WebRtcPeerSendrecv(options,
         function(error) {
@@ -315,14 +362,14 @@ function register() {
     name : name
   };
   sendMessage(message);
-  document.getElementById('peer').focus();
+ /// document.getElementById('peer').focus();
 }
 
 function call() {
-  if (document.getElementById('peer').value == '') {
-    window.alert('You must specify the peer name');
-    return;
-  }
+  // if (document.getElementById('peer').value == '') {
+  //   window.alert('You must specify the peer name');
+  //   return;
+  // }
   setCallState(PROCESSING_CALL);
   showSpinner(videoInput, videoOutput);
 
@@ -357,6 +404,7 @@ function play() {
     remoteVideo: videoOutput,
     onicecandidate: onIceCandidate
   }
+  options.configuration  = configuration;
   webRtcPeer = new kurentoUtils.WebRtcPeer.WebRtcPeerRecvonly(options,
     function(error) {
       if (error) {
@@ -372,13 +420,16 @@ function onOfferCall(error, offerSdp) {
     return console.error('Error generating the offer');
   }
   console.log('Invoking SDP offer callback function');
+  //var to = $('#peer').val();
+  //if(to==null || to=="")
+ // var to = customerSupportUser;
   var message = {
     id : 'call',
-    from : document.getElementById('name').value,
-    //to : document.getElementById('peer').value,
-    to : $('#peer').val(),
+    from : Session.get('name'),
+    to: customerSupportUser,
     sdpOffer : offerSdp
   };
+  console.log(message);
   sendMessage(message);
 }
 
@@ -389,7 +440,7 @@ function onOfferPlay(error, offerSdp) {
   console.log('Invoking SDP offer callback function');
   var message = {
     id : 'play',
-    user : document.getElementById('peer').value,
+    user : Session.get('name'),
     sdpOffer : offerSdp
   };
   sendMessage(message);
@@ -403,7 +454,7 @@ function playEnd() {
 
 function stop(message) {
   console.log("Stopping");
-  var stopMessageId = (callState == IN_CALL || callState == PROCESSING_CALL) ? 'stop' : 'stopPlay';
+  var stopMessageId = (Session.get('callstate') == IN_CALL || Session.get('callstate') == PROCESSING_CALL) ? 'stop' : 'stopPlay';
   setCallState(NO_CALL);
   if (webRtcPeer) {
     webRtcPeer.dispose();

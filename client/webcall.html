@@ -7,60 +7,67 @@
                                 <h6>Webcall.</h6>
                             </div>
                             <div class="col-sm-8">
-                                       Please call me when you see me online! 
+                                       When I am online you can call me from here:
                                        <p>
-                                       Name: {{onlineStatus.name}} is {{onlineStatus.status}}
-                                       </p>
+                                       I am at the moment: {{onlineStatus.response}}
+                                       <!-- 
+<br>
+                                       CallState:{{callstate}}<br>
+                                       RegisterState::{{registerstate}}-->
+                                       </p> 
                             </div>
                         </div>
-                        <div class="row">
-                        <div class="col-md-5">
-                            <label class="control-label" for="name">Name</label>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input id="name" name="name" class="form-control" type="text"  />
-                                </div>
-                                <div class="col-md-6 text-right">
-                                    <a id="register" href="#" class="btn btn-primary"><span
-                                        class="glyphicon glyphicon-plus"></span> Register</a>
-                                </div>
-                            </div>
+                        {{#if online}}
 
-                            <br /> <br /> <label class="control-label" for="peer">Peer</label>
-                            <div class="row">
-                                <div class="col-md-6">
-                                 <!--    <input id="peer" name="peer" class="form-control" type="text"
-                                        onkeydown="if (event.keyCode == 13) call();"> -->
-                                    <select name="peer" id="peer">
-                                        {{#each peer in peers}}
-                                            <option>{{peer}}</option>
-                                        {{/each}}
-                                    </select> 
-                                </div>
-                                <div class="col-md-6 text-right">
-                                    <a id="call" href="#" class="btn btn-success"><span
-                                        class="glyphicon glyphicon-play"></span> Call</a> <a id="terminate"
-                                        href="#" class="btn btn-danger"><span
-                                        class="glyphicon glyphicon-stop"></span> Stop</a>
-                                </div>
-                            </div>
-                            <br /> <label class="control-label" for="console">Console</label><br>
-                            <br>
-                            <div id="console" class="democonsole">
-                                <ul></ul>
+                        <div class="row" >
+                            <div class="col-md-12">
+                                
+                                
+                                {{#if registerState 0}}
+                                <label class="control-label" for="name">Please tell me your name:</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input id="name" name="name" class="form-control" type="text"  />
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <a id="register" href="#" class="btn btn-primary"><span
+                                                class="glyphicon glyphicon-plus"></span> Register</a>
+                                        </div>
+                                    </div>
+                                {{/if}}
+                                 <!-- <label class="control-label" for="peer">Peer</label> -->
+                                 {{#if registerState 2}}
+                                 <label class="control-label" for="name">You can call me now:</label>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <a id="call" href="#" class="btn btn-success">
+                                            <span class="glyphicon glyphicon-play"></span> Call</a> 
+                                        </div>
+                                        <div class="col-md-3">
+                                            <a id="terminate"
+                                                href="#" class="btn btn-danger"><span
+                                                class="glyphicon glyphicon-stop"></span> Stop</a>
+                                        </div>
+                                    </div>
+                                {{/if}}
                             </div>
                         </div>
-                        <div class="col-md-7">
-                            <div id="videoBig">
-                                <video id="videoOutput" autoplay width="640px" height="480px"
-                                    poster="img/webrtc.png"></video>
-                            </div>
-                            <div id="videoSmall">
-                                <video id="videoInput" autoplay width="240px" height="180px"
-                                    poster="img/webrtc.png"></video>
-                            </div>
+                        
+                           {{/if}}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="videoBig">
+                                    <video id="videoOutput" autoplay 
+                                        poster="img/webrtc.png"></video>
+                                </div>
+                                <div id="videoSmall">
+                                    <video id="videoInput" autoplay width="240px" height="180px"
+                                        poster="img/webrtc.png"></video>
+                                </div>
                         </div>
+                     
                     </div>
+
                     </div>
     </section>
 </template>
