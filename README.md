@@ -14,8 +14,6 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 	https://github.com/TAPevents/tap-i18n-db
 	https://github.com/TAPevents/tap-i18n
 - add spiderable
-
-	
 - add content everywhere (e.g. bio)
 
 
@@ -29,7 +27,7 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 - add markdown for texts (textareas)
 - add clone me on github flag on webpage
 
-##Info
+##Howto Deploy
 ``
 	docker run -d  -e ROOT_URL=http://www.nicokrause.com  -e MONGO_URL=mongodb://username:password@nicokrause.com/dbname -v /var/www/meteor/nicokrause.com:/bundle -p 3002:80 --log-driver=syslog     meteorhacks/meteord:base
 ``
