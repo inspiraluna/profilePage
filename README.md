@@ -10,10 +10,10 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 
 
 ##TODO
+- (bug) cannot add new projects / trips correctly
 - translation 
 	https://github.com/TAPevents/tap-i18n-db
 	https://github.com/TAPevents/tap-i18n
-- add spiderable
 - webrtc
 - add content everywhere (e.g. bio)
 
@@ -30,6 +30,7 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 
 
 ##Done:
+- 2017-11-01 added spiderable
 - 2016-04-25 deploy on own server
 - 2016-04-24  
 - 2015-12-23 edit content e.g.  through in place textboxes
