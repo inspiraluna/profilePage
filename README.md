@@ -11,25 +11,27 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 
 ##TODO
 - (bug) cannot add new projects / trips correctly
+- make nicer links to SocialMedia 
+	- eventually show logos of the technology by hovering over the skills
+	- put links to the technologies
+- add markdown for texts (textareas)
+- change webdesign
 - translation 
 	https://github.com/TAPevents/tap-i18n-db
 	https://github.com/TAPevents/tap-i18n
-- webrtc
+- implement a WebRTC for profile!
 - add content everywhere (e.g. bio)
+- add clone me on github flag on webpage
 
 
 ##Nice2Have
 - make already edited texts editable (what exactly?!)
 - improve delete of hobbies (* at the wrong position)
-- make nicer links to SocialMedia 
-	- eventually show logos of the technology by hovering over the skills
-	- put links to the technologies
-- implement a WebRTC for profile!
-- add markdown for texts (textareas)
-- add clone me on github flag on webpage
 
 
 ##Done:
+- 2017-11-01 made telefon contact data clickable 
+- 2017-11-01 upgraded to meteor 1.6
 - 2017-11-01 added spiderable
 - 2016-04-25 deploy on own server
 - 2016-04-24  
