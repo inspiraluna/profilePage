@@ -116,56 +116,56 @@
               </div> 
             </div>
             <div class="contact-item">
-              <div class="icon pull-left text-center"><span class="fa fa-envelope fa-fw"></span></div>
+              <div class="icon pull-left text-center"><a href="mailto:{{email}}"><span class="fa fa-envelope fa-fw"></span></a></div>
               <div class="title only pull-right">
             {{#if currentUser}}
               {{> m_editable options field='email' }}
             {{else}}
-                {{email}}
+                <a href="mailto:{{email}}">{{email}}</a>
             {{/if}}
               </div>
             </div>
             <div class="contact-item">
-              <div class="icon pull-left text-center"><span class="fa fa-twitter fa-fw"></span></div>
+              <div class="icon pull-left text-center"><a href="https://twitter.com/{{twitter}}"><span class="fa fa-twitter fa-fw"></span></a></div>
               <div class="title pull-right">Twitter</div>
               <div class="description pull-right">
               {{#if currentUser}}
                 {{> m_editable options field='twitter' }}
               {{else}}
-                  {{twitter}}
+                  <a href="https://twitter.com/{{twitter}}" target="_blank">@{{twitter}}</a>
               {{/if}}
               </div>
             </div>
             <div class="contact-item">
-              <div class="icon pull-left text-center"><span class="fa fa-facebook fa-fw"></span></div>
+              <div class="icon pull-left text-center"><a href="https://facebook.com/{{facebook}}"><span class="fa fa-facebook fa-fw"></span></a></div>
               <div class="title pull-right">Facebook</div>
               <div class="description pull-right">
                   {{#if currentUser}}
                   {{> m_editable options field='facebook' }}
                   {{else}}
-                      {{facebook}}
+                      <a href="https://facebook.com/{{facebook}}" target="_blank">{{facebook}}</a>
                   {{/if}}
               </div>
             </div>
             <div class="contact-item">
-              <div class="icon pull-left text-center"><span class="fa fa-skype fa-fw"></span></div>
+              <div class="icon pull-left text-center"><a href="https://github.com/{{github}}"><span class="fa fa-github fa-fw"></span></a></div>
               <div class="title pull-right">Github</div>
               <div class="description pull-right">
                   {{#if currentUser}}
                     {{> m_editable options field='github' }}
                   {{else}}
-                      {{github}}
+                      <a href="https://github.com/{{github}}" target="_blank">{{github}}</a>
                   {{/if}}
               </div>
             </div>
             <div class="contact-item">
-              <div class="icon pull-left text-center"><span class="fa fa-skype fa-fw"></span></div>
+              <div class="icon pull-left text-center"><a href="skype:{{skype}}"><span class="fa fa-skype fa-fw"></span></a></div>
               <div class="title pull-right">Skype</div>
               <div class="description pull-right">
                   {{#if currentUser}}
                      {{> m_editable options field='skype' }}
                   {{else}}
-                      {{skype}}
+                      <a href="sykpe:{{skype}}">{{skype}}</a>
                   {{/if}}
               </div>
             </div>

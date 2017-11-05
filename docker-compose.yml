@@ -1,0 +1,27 @@
+version: '2'
+services:
+  meteor:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    ports:
+      - "3000:3000"
+    volumes:
+      - ${PWD}:/app
+    environment:
+      -  MONGO_URL=mongodb://nicokrause_com:omnamahshivaya@nicokrause.com:27017/nicokrause_com
+  test:
+    command: ./start_test.sh
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    ports:
+      - "3000:3000"
+    volumes:
+      - ${PWD}:/app
+    links:
+      - mongo
+    environment:
+      -  MONGO_URL=mongodb://mongo:27017/meteor    
+  mongo:
+    image: mongo:3.0.14 

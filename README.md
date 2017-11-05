@@ -9,7 +9,7 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 4. go to http://localhost:3000
 
 
-##TODO
+## TODO
 - (bug) cannot add new projects / trips correctly
 - make nicer links to SocialMedia 
 	- eventually show logos of the technology by hovering over the skills
@@ -24,12 +24,22 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 - add clone me on github flag on webpage
 
 
-##Nice2Have
+## Nice2Have
 - make already edited texts editable (what exactly?!)
 - improve delete of hobbies (* at the wrong position)
 
+## create docker image & deploy
+1. check Dockerfile.development
+2. docker-compose build && docker-compose.yml
+3. docker-compose run --service-ports meteor
+4. docker save -o <save image to path> <image name>
+5. copy image file to production server
+6. docker load -i <path to image tar file>
+7. (only change bundle with)  meteor build ../build/ --architecture os.linux.x86_64
+8. scp ../build/profilePage.tar.gz nico@le-space.de:/var/www/meteor/nicokrause.com/
+9. docker run -d -e ROOT_URL=http://www.nicokrause.com -e MONGO_URL=mongodb://nicokrause_com:XXXXXX@nicokrause.com/nicokrause_com -v /var/www/meteor/nicokrause.com:/bundle -p 3002:3000 --log-driver=syslog  profilepage_meteor
 
-##Done:
+## Done:
 - 2017-11-01 made telefon contact data clickable 
 - 2017-11-01 upgraded to meteor 1.6
 - 2017-11-01 added spiderable
