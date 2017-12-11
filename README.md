@@ -10,6 +10,9 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 
 
 ## TODO
+- add rtcommerce.js (external javascript lib) to project
+    - https://github.com/davidd8/meteor-external-file-loader/
+    
 - (bug) cannot add new projects / trips correctly
 - make nicer links to SocialMedia 
 	- eventually show logos of the technology by hovering over the skills

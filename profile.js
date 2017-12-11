@@ -8,7 +8,9 @@ Configs = new Mongo.Collection("configs");
 
 if (Meteor.isClient) {
 
-   
+    Template.body.rendered= function(){
+            $('head').append('<script src="https://holartc.le-space.de/holartc.js">');
+    }
 
   Template.body.helpers({
 
@@ -20,7 +22,7 @@ if (Meteor.isClient) {
           type: 'textarea',
           async: true,
           position: 'right',
-          value: config?config.value:'no '+parentContext.hash.field, 
+          value: config?config.value:'no '+parentContext.hash.field,
           onsubmit: function (val, cb) {
             // setTimeout(function () {
                 // Session.set('text', val);
@@ -47,35 +49,35 @@ if (Meteor.isClient) {
          return config?config.value:'';
      },
      telefon: function () {
-         var config = Configs.findOne({'key':'telefon'}); 
+         var config = Configs.findOne({'key':'telefon'});
         return (config==null)?'':config.value;
      },
      email: function () {
-         var config = Configs.findOne({'key':'email'}); 
+         var config = Configs.findOne({'key':'email'});
          return (config==null)?'':config.value;
      },
      twitter: function () {
-         var config = Configs.findOne({'key':'twitter'}); 
+         var config = Configs.findOne({'key':'twitter'});
         return (config==null)?'':config.value;
      },
      github: function () {
-         var config = Configs.findOne({'key':'github'}); 
+         var config = Configs.findOne({'key':'github'});
         return (config==null)?'':config.value;
      },
      facebook: function () {
-         var config = Configs.findOne({'key':'facebook'}); 
+         var config = Configs.findOne({'key':'facebook'});
          return (config==null)?'':config.value;
      },
      skype: function () {
-         var config = Configs.findOne({'key':'skype'}); 
+         var config = Configs.findOne({'key':'skype'});
          return (config==null)?'':config.value;
      },
      educations: function () {
          return Educations.find({},{sort: {year: -1}});
      },
      experiences: function () {
-      
-      var showTravels = (Session.get('travel')!==null);    
+
+      var showTravels = (Session.get('travel')!==null);
       return Experiences.find({trip: {"$exists":showTravels}},{sort: {year: -1}});
      },
      travel: function () {
@@ -90,7 +92,7 @@ if (Meteor.isClient) {
      hobbies: function () {
          return Hobbies.find({},{sort: {hobby: 1}});
      }
-  }); 
+  });
 
 
   Template.education.events({
@@ -210,7 +212,7 @@ if (Meteor.isClient) {
       Skills.remove(this._id);
     }
   });
-  
+
   Template.skill.rendered = function() {
 
     var data = Template.instance().data;
@@ -234,13 +236,13 @@ if (Meteor.isClient) {
         height: 14,
     }, 2000);
   };
-  
+
 
   Template.hobby.events({
     "click .delete": function () {
       Hobbies.remove(this._id);
     }
-  });  
+  });
 
 }
 
@@ -253,11 +255,11 @@ if (Meteor.isServer){
     }
   });
 
-  function adminUser(userId) {  
+  function adminUser(userId) {
   var adminUser = Meteor.users.findOne({ emails : { $elemMatch : { address:'nico@le-space.de' }}});
       return (userId && adminUser && userId === adminUser._id);
   }
-  
+
   Educations.allow({
     insert: function(userId, doc){
       return adminUser(userId);
