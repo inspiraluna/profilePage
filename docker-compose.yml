@@ -1,15 +1,6 @@
-version: '3'
+version: '2'
 services:
   meteor:
-    build:
-      context: .
-      dockerfile: Dockerfile.development
-    ports:
-      - "3002:3000"
-    volumes:
-      - ${PWD}:/app
-  test:
-    command: ./start_test.sh
     build:
       context: .
       dockerfile: Dockerfile.development
