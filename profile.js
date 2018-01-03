@@ -77,7 +77,8 @@ if (Meteor.isClient) {
      },
      experiences: function () {
 
-      var showTravels = (Session.get('travel')!==null);
+      var showTravels = (Session.get('travel')!=null);
+      console.log(showTravels);
       return Experiences.find({trip: {"$exists":showTravels}},{sort: {year: -1}});
      },
      travel: function () {
