@@ -1,9 +1,12 @@
+
+
 Educations = new Mongo.Collection("educations");
 Experiences = new Mongo.Collection("experiences");
 Skills = new Mongo.Collection("skills");
 Languages = new Mongo.Collection("languages");
 Hobbies = new Mongo.Collection("hobbies");
 Configs = new Mongo.Collection("configs");
+
 
 
 if (Meteor.isClient) {
@@ -79,7 +82,14 @@ if (Meteor.isClient) {
 
       var showTravels = (Session.get('travel')!=null);
       console.log(showTravels);
-      return Experiences.find({trip: {"$exists":showTravels}},{sort: {year: -1}});
+
+
+
+      if(showTravels)
+        return Experiences.find({ "trip": true},{sort: {year: -1}});
+      else
+        return Experiences.find({$or:[{trip:false},{trip:{$exists:false}}]},{sort: {year: -1}});
+
      },
      travel: function () {
          return Session.get('travel');
@@ -95,7 +105,6 @@ if (Meteor.isClient) {
      }
   });
 
-
   Template.education.events({
     "click .delete": function () {
       Educations.remove(this._id);
@@ -108,7 +117,6 @@ if (Meteor.isClient) {
     }
   });
 
-    //Languages
   Template.body.events({
 
     "click .travel": function (event) {
@@ -247,91 +255,3 @@ if (Meteor.isClient) {
 
 }
 
-if (Meteor.isServer){
-
-  Meteor.users.deny({
-    update: function() {
-      // return true;
-      (!adminUser(userId))
-    }
-  });
-
-  function adminUser(userId) {
-  var adminUser = Meteor.users.findOne({ emails : { $elemMatch : { address:'nico@le-space.de' }}});
-      return (userId && adminUser && userId === adminUser._id);
-  }
-
-  Educations.allow({
-    insert: function(userId, doc){
-      return adminUser(userId);
-    },
-    update: function(userId, docs, fields, modifier){
-      return adminUser(userId);
-    },
-    remove: function (userId, docs){
-      return adminUser(userId);
-    }
-  });
-
-  Experiences.allow({
-    insert: function(userId, doc){
-      return adminUser(userId);
-    },
-    update: function(userId, docs, fields, modifier){
-      return adminUser(userId);
-    },
-    remove: function (userId, docs){
-      return adminUser(userId);
-    }
-  });
-
-  Skills.allow({
-    insert: function(userId, doc){
-      return adminUser(userId);
-    },
-    update: function(userId, docs, fields, modifier){
-      return adminUser(userId);
-    },
-    remove: function (userId, docs){
-      return adminUser(userId);
-    }
-  });
-
-  Languages.allow({
-    insert: function(userId, doc){
-      return adminUser(userId);
-    },
-    update: function(userId, docs, fields, modifier){
-      return adminUser(userId);
-    },
-    remove: function (userId, docs){
-      return adminUser(userId);
-    }
-  });
-
-  Hobbies.allow({
-    insert: function(userId, doc){
-      return adminUser(userId);
-    },
-    update: function(userId, docs, fields, modifier){
-      return adminUser(userId);
-    },
-    remove: function (userId, docs){
-      return adminUser(userId);
-    }
-  });
-
-  Configs.allow({
-    insert: function(userId, doc){
-      return adminUser(userId);
-    },
-    update: function(userId, docs, fields, modifier){
-     // console.log('userId:'+userId+' docs:'+docs+' fields:'+fields+' modifier:'+modifier);
-      return adminUser(userId);
-    },
-    remove: function (userId, docs){
-      return adminUser(userId);
-    }
-  });
-
-}

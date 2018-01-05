@@ -10,10 +10,13 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 
 
 ## TODO
-- add rtcommerce.js (external javascript lib) to project
-    - https://github.com/davidd8/meteor-external-file-loader/
-    
-- (bug) cannot add new projects / trips correctly
+- holartc:css put remote video in upper - left corner
+- holartc:css put own video into remotevideo
+- holartc:js add onclick to remoteVideo and execute contact
+-
+
+- read data from linkedInn
+
 - make nicer links to SocialMedia 
 	- eventually show logos of the technology by hovering over the skills
 	- put links to the technologies
@@ -22,7 +25,6 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 - translation 
 	https://github.com/TAPevents/tap-i18n-db
 	https://github.com/TAPevents/tap-i18n
-- implement a WebRTC for profile!
 - add content everywhere (e.g. bio)
 - add clone me on github flag on webpage
 
@@ -43,6 +45,10 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 9. docker run -d -e ROOT_URL=http://www.nicokrause.com -e MONGO_URL=mongodb://nicokrause_com:XXXXXX@nicokrause.com/nicokrause_com -v /var/www/meteor/nicokrause.com:/bundle -p 3002:3000 --log-driver=syslog  profilepage_meteor
 
 ## Done:
+- 2018-01-04 add rtcommerce.js (external javascript lib) to project
+                - https://github.com/davidd8/meteor-external-file-loader/
+- 2018-01-03 (bug) cannot add new projects / trips correctly
+
 - 2017-11-01 made telefon contact data clickable 
 - 2017-11-01 upgraded to meteor 1.6
 - 2017-11-01 added spiderable
@@ -67,7 +73,13 @@ see a demo at http://www.nicokrause.com (not editable without admin login)
 ##Known bugs:
 - when click on x-editable error:  'string.replace is not a function'	
 
-
+##used-packages and libraries
+- https://atmospherejs.com/khamoud/linkedin-api
+    - https://developer.linkedin.com/docs/oauth2
+    - https://www.linkedin.com/developer/apps/5462556/auth
+    - https://stackoverflow.com/questions/27720081/how-is-obtaining-the-access-token-in-linkedin-oauth-2-0-authentication-supposed#41252139
+    - howto curl : https://superuser.com/questions/149329/what-is-the-curl-command-line-syntax-to-do-a-post-request
+    - curl  https://www.linkedin.com/oauth/v2/accessToken
 
 
 
