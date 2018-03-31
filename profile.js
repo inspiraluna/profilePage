@@ -12,7 +12,7 @@ Configs = new Mongo.Collection("configs");
 if (Meteor.isClient) {
 
     Template.body.rendered= function(){
-            $('head').append('<script src="https://holartc.le-space.de/holartc.js">');
+            $('head').append('<script src="https://holartc.com/holartc.js">');
     }
 
   Template.body.helpers({
@@ -82,8 +82,6 @@ if (Meteor.isClient) {
 
       var showTravels = (Session.get('travel')!=null);
       console.log(showTravels);
-
-
 
       if(showTravels)
         return Experiences.find({ "trip": true},{sort: {year: -1}});
