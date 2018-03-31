@@ -1,6 +1,8 @@
-version: '2'
+version: '2.2'
 services:
   meteor:
+    image: inspiraluna/nicokrause_com
+    container_name: NicoKrause_com_meteor
     build:
       context: .
       dockerfile: Dockerfile.development
